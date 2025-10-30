@@ -1,33 +1,190 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fuego Rústico</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fuego Rústico — Tu parrilla libre</title>
+  <meta name="description" content="Parrillas de acero inoxidable portátiles. Cociná donde quieras: río, playa, montaña." />
+  <meta property="og:title" content="Fuego Rústico — Tu parrilla libre" />
+  <meta property="og:description" content="Parrillas de acero inoxidable portátiles. Cociná donde quieras: río, playa, montaña." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/og-image.jpg" />
+  <meta name="theme-color" content="#ff3c00" />
+  <link rel="icon" href="/assets/favicon.png" />
   <style>
-    body {
-      background-color: #1b1b1b;
-      color: #f4f4f4;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
+    :root{
+      --bg:#0f0f0f; --bg-2:#151515; --text:#e9e9e9; --muted:#b9b9b9; --brand:#ff3c00; --brand-2:#ff6a3d; --ok:#22c55e;
+      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35)
     }
-    h1 {
-      color: #ff3c00;
-      font-size: 3em;
-    }
-    p {
-      font-size: 1.2em;
-      color: #ddd;
-    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; color:var(--text); background:var(--bg); line-height:1.5}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* Layout */
+    .container{width:min(1100px, 92%); margin-inline:auto}
+    header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(160%) blur(6px); background:linear-gradient(180deg, rgba(15,15,15,.9), rgba(15,15,15,.5) 60%, rgba(15,15,15,0)); border-bottom:1px solid rgba(255,255,255,.05)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand img{width:34px; height:34px; border-radius:8px}
+    .brand .title{font-weight:700; letter-spacing:.4px}
+    nav a{opacity:.85; margin-left:18px}
+    nav a:hover{opacity:1}
+
+    .btn{display:inline-flex; align-items:center; justify-content:center; padding:14px 20px; border-radius:999px; background:linear-gradient(180deg, var(--brand), var(--brand-2)); color:white; font-weight:700; box-shadow:var(--shadow); border:none; cursor:pointer}
+    .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.2)}
+
+    /* Hero */
+    .hero{position:relative; isolation:isolate; min-height:78vh; display:grid; place-items:center; text-align:center}
+    .hero::before{content:''; position:absolute; inset:0; z-index:-2; background:url('/assets/hero.jpg') center/cover no-repeat fixed}
+    .hero::after{content:''; position:absolute; inset:0; z-index:-1; background:radial-gradient(80% 60% at 50% 40%, rgba(0,0,0,.35), rgba(0,0,0,.82))}
+    .hero h1{font-size:clamp(36px, 6vw, 64px); margin:8px 0}
+    .hero p{color:var(--muted); font-size:clamp(16px, 2.2vw, 20px); margin:0 0 24px}
+    .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+
+    /* Product */
+    .section{padding:64px 0; background:var(--bg)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .grid{display:grid; gap:28px}
+    @media(min-width:900px){.grid-cols-2{grid-template-columns:1.1fr .9fr}}
+
+    .list{display:grid; gap:10px; margin-top:14px}
+    .list li{display:flex; align-items:center; gap:10px; color:var(--text)}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.06); font-size:14px}
+
+    /* Gallery */
+    .gallery{display:grid; gap:16px; grid-template-columns:repeat(12,1fr)}
+    .gallery img{border-radius:14px}
+    .span-6{grid-column:span 6}
+    .span-4{grid-column:span 4}
+    @media(max-width:780px){.span-6,.span-4{grid-column:span 12}}
+
+    /* Testimonials */
+    .quotes{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.quotes{grid-template-columns:1fr}}
+    .quote{padding:18px; border:1px solid rgba(255,255,255,.08); border-radius:14px; background:var(--bg-2)}
+
+    /* Footer */
+    footer{padding:36px 0; border-top:1px solid rgba(255,255,255,.08); background:var(--bg-2); color:var(--muted)}
+    .social{display:flex; gap:14px; align-items:center}
+    .fine{font-size:13px; opacity:.8}
   </style>
 </head>
 <body>
-  <h1>🔥 Fuego Rústico 🔥</h1>
-  <p>Tu parrilla libre.</p>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <img src="/assets/logo.png" alt="Fuego Rústico logo" />
+        <span class="title">Fuego Rústico</span>
+      </a>
+      <nav>
+        <a href="#producto">Producto</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+        <a class="btn" href="#contacto">Comprar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <p class="chip">Hecho en Argentina · Acero inoxidable</p>
+        <h1>🔥 FUEGO RÚSTICO</h1>
+        <p>Tu parrilla libre. Cociná donde quieras: río, playa o montaña.</p>
+        <div class="cta">
+          <!-- ⚠️ Reemplazá 549XXXXXXXXXX por tu número de WhatsApp en formato internacional → 54 + código de área + número sin 0 ni 15 -->
+          <a class="btn" href="https://wa.me/549XXXXXXXXXX?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20info%20de%20la%20parrilla" target="_blank" rel="noopener">📲 Pedí la tuya por WhatsApp</a>
+          <a class="btn ghost" href="#producto">Ver producto</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTO -->
+    <section id="producto" class="section">
+      <div class="container grid grid-cols-2">
+        <div class="card" style="padding:22px">
+          <img src="/assets/producto-1.jpg" alt="Parrilla Fuego Rústico" />
+        </div>
+        <div class="card" style="padding:26px; display:flex; flex-direction:column; justify-content:center">
+          <h2 style="margin:0 0 8px">Parrilla de acero inoxidable</h2>
+          <p style="color:var(--muted); margin:0 0 10px">Liviana, resistente y portátil. Lista para tus aventuras.</p>
+          <ul class="list">
+            <li>✅ Acero inoxidable 304</li>
+            <li>✅ Plegable y fácil de transportar</li>
+            <li>✅ Ideal para río, playa y camping</li>
+            <li>✅ Diseño pensado para brasas (no llama viva)</li>
+          </ul>
+          <div style="margin-top:18px" class="cta">
+            <a class="btn" href="https://wa.me/549XXXXXXXXXX?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar%20la%20parrilla" target="_blank" rel="noopener">Comprar ahora</a>
+            <a class="btn ghost" href="#galeria">Ver en acción</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="section" style="background:var(--bg-2)">
+      <div class="container">
+        <h2 style="margin-top:0">Donde haya fuego, hay un Fuego Rústico</h2>
+        <div class="gallery" style="margin-top:16px">
+          <img class="span-6" src="/assets/galeria-1.jpg" alt="Playa con parrilla" />
+          <img class="span-6" src="/assets/galeria-2.jpg" alt="Río con parrilla" />
+          <img class="span-4" src="/assets/galeria-3.jpg" alt="Camping" />
+          <img class="span-4" src="/assets/galeria-4.jpg" alt="Montaña" />
+          <img class="span-4" src="/assets/galeria-5.jpg" alt="Amigos" />
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="section">
+      <div class="container">
+        <h2 style="margin-top:0">Lo que dicen quienes la usan</h2>
+        <div class="quotes" style="margin-top:14px">
+          <div class="quote">“La uso en todos los viajes. No falla.”</div>
+          <div class="quote">“Liviana, fuerte y práctica para la chata.”</div>
+          <div class="quote">“Mi mejor compra para acampar.”</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL / CONTACTO -->
+    <section id="contacto" class="section" style="padding:80px 0; background:radial-gradient(70% 60% at 50% 40%, rgba(255,60,0,.12), rgba(0,0,0,0))">
+      <div class="container" style="text-align:center">
+        <h2 style="margin:0 0 6px">¿Listo para tu próxima aventura?</h2>
+        <p style="color:var(--muted); margin:0 0 18px">Consultas, envíos y stock por WhatsApp.</p>
+        <a class="btn" href="https://wa.me/549XXXXXXXXXX?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20info" target="_blank" rel="noopener">📲 Escribinos ahora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; gap:18px; justify-content:space-between; flex-wrap:wrap">
+      <div class="social">
+        <img src="/assets/logo.png" alt="logo" width="28" height="28" style="border-radius:8px"/>
+        <strong>Fuego Rústico</strong>
+      </div>
+      <div class="social">
+        <a href="https://instagram.com/fuegorustico" target="_blank" rel="noopener">Instagram</a>
+        <span>·</span>
+        <a href="mailto:hola@fuegorustico.com">hola@fuegorustico.com</a>
+        <span>·</span>
+        <span class="fine">Hecho en Argentina</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll suave para anclas internas
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){ e.preventDefault(); document.querySelector(id).scrollIntoView({behavior:'smooth'}); }
+      })
+    })
+  </script>
 </body>
 </html>
