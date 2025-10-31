@@ -77,12 +77,29 @@
     .ml-option:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.24); background:rgba(255,255,255,.06)}
     .buy-hint{color:var(--muted); margin:4px 0 0; font-size:14.5px}
 
-    /* Carousel */
+    /* Carousel (fit: no recorta) */
     .carousel{position:relative; margin-top:16px}
-    .c-viewport{overflow:hidden; border-radius:14px}
-    .c-track{display:flex; transition:transform .4s ease; will-change:transform}
-    .c-slide{min-width:100%; user-select:none}
-    .c-slide img{width:100%; aspect-ratio:3/4; object-fit:cover}
+    .c-viewport{
+      overflow:hidden; border-radius:14px;
+      height: clamp(260px, 60vh, 640px); /* desktop/tablet */
+      background: rgba(255,255,255,.02);
+    }
+    .c-track{display:flex; height:100%; transition:transform .4s ease; will-change:transform}
+    .c-slide{
+      min-width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center;
+      padding:8px; /* respiro alrededor */
+    }
+    .c-slide img{
+      max-height:100%;
+      height:100%;
+      width:auto;
+      object-fit: contain;           /* NO recorta */
+      border-radius:12px;
+      aspect-ratio: auto !important; /* anula el 3/4 aquí */
+    }
+    
+    /* Controles */
     .c-prev,.c-next{
       position:absolute; top:50%; transform:translateY(-50%); z-index:2;
       background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.25);
@@ -92,6 +109,11 @@
     .c-dots{display:flex; gap:6px; justify-content:center; margin-top:10px}
     .c-dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.35); border:0}
     .c-dot[aria-current="true"]{background:white}
+    
+    /* Mobile: altura más contenida */
+    @media (max-width: 780px){
+      .c-viewport{ height: clamp(220px, 55vh, 560px); }
+    }
 
     /* Testimonials */
     .quotes{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
@@ -359,4 +381,5 @@
   </script>
 </body>
 </html>
+
 
