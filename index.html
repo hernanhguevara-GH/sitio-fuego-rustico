@@ -1,29 +1,266 @@
-<!-- Bloque de acciones de compra -->
-<div class="cta" style="margin-top:18px; flex-wrap:wrap; justify-content:flex-start; gap:10px">
-  <!-- Opción directa (efectivo / transferencia) -->
-  <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar%20por%20transferencia%20o%20efectivo" 
-     target="_blank" rel="noopener" 
-     title="Precio especial pagando por transferencia o efectivo">
-     💰 Comprar directo (mejor precio)
-  </a>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fuego Rústico — Tu parrilla libre</title>
+  <meta name="description" content="Parrillas de acero inoxidable portátiles. Cociná donde quieras: río, playa, montaña." />
+  <meta property="og:title" content="Fuego Rústico — Tu parrilla libre" />
+  <meta property="og:description" content="Parrillas de acero inoxidable portátiles. Cociná donde quieras: río, playa, montaña." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/og-image.jpg" />
+  <meta name="theme-color" content="#ff3c00" />
+  <link rel="icon" href="/assets/favicon.png" />
+  <style>
+    :root{
+      --bg:#0f0f0f; --bg-2:#151515; --text:#e9e9e9; --muted:#b9b9b9; --brand:#ff3c00; --brand-2:#ff6a3d; --ok:#22c55e;
+      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35)
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; color:var(--text); background:var(--bg); line-height:1.5}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
 
-  <!-- Opción Mercado Libre -->
-  <a class="btn secondary" href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812"
-     target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px"
-     title="Pago con cuotas y envío gratis por Mercado Libre">
-    <img src="/assets/mercadolibre-logo.png" alt="Mercado Libre" width="90" height="22" loading="lazy" />
-    <span>Cuotas</span>
-  </a>
+    .container{width:min(1100px, 92%); margin-inline:auto}
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter:saturate(160%) blur(6px);
+      background:linear-gradient(180deg, rgba(15,15,15,.9), rgba(15,15,15,.5) 60%, rgba(15,15,15,0));
+      border-bottom:1px solid rgba(255,255,255,.05)
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
 
-  <a class="btn secondary" href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308167072"
-     target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px"
-     title="Pago en un solo pago y envío gratis por Mercado Libre">
-    <img src="/assets/mercadolibre-logo.png" alt="Mercado Libre" width="90" height="22" loading="lazy" />
-    <span>1 pago</span>
-  </a>
-</div>
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand img{width:34px; height:34px; border-radius:8px}
+    .brand .title{font-weight:700; letter-spacing:.4px}
 
-<p style="color:var(--muted); margin-top:10px; font-size:15px;">
-  💡 Pagando por transferencia o efectivo obtenés el mejor precio.  
-  Si preferís cuotas o envío gratis, podés hacerlo desde Mercado Libre.
-</p>
+    /* menú desktop */
+    nav{display:flex; align-items:center; gap:18px}
+    nav a{opacity:.85}
+    nav a:hover{opacity:1}
+
+    .btn{display:inline-flex; align-items:center; justify-content:center; padding:14px 20px; border-radius:999px; background:linear-gradient(180deg, var(--brand), var(--brand-2)); color:white; font-weight:700; box-shadow:var(--shadow); border:none; cursor:pointer}
+    .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.2)}
+    .btn.secondary{background:transparent; border:1px solid rgba(255,255,255,.2)}
+    .btn + .btn { margin-left: 8px; }
+
+    /* hamburguesa */
+    .menu-toggle{display:none; background:none; border:none; color:var(--text); font-size:26px; cursor:pointer; line-height:1}
+
+    .hero{position:relative; isolation:isolate; min-height:78vh; display:grid; place-items:center; text-align:center}
+    .hero::before{content:''; position:absolute; inset:0; z-index:-2; background:url('/assets/hero.jpeg') center/cover no-repeat fixed}
+    .hero::after{content:''; position:absolute; inset:0; z-index:-1; background:radial-gradient(80% 60% at 50% 40%, rgba(0,0,0,.35), rgba(0,0,0,.82))}
+    .hero h1{font-size:clamp(36px, 6vw, 64px); margin:8px 0}
+    .hero p{color:var(--muted); font-size:clamp(16px, 2.2vw, 20px); margin:0 0 24px}
+    .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+
+    .section{padding:64px 0; background:var(--bg)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .grid{display:grid; gap:28px}
+    @media(min-width:900px){.grid-cols-2{grid-template-columns:1.1fr .9fr}}
+
+    .list{display:grid; gap:10px; margin-top:14px}
+    .list li{display:flex; align-items:center; gap:10px; color:var(--text)}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.06); font-size:14px}
+
+    .gallery{display:grid; gap:16px; grid-template-columns:repeat(12,1fr)}
+    .gallery img{
+      border-radius:14px; width:100%;
+      aspect-ratio: 3 / 4; 
+      object-fit:cover;
+    }
+    .span-6{grid-column:span 6}
+    .span-4{grid-column:span 4}
+    @media(max-width:780px){
+      .span-6,.span-4{grid-column:span 12}
+    }
+
+    .quotes{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.quotes{grid-template-columns:1fr}}
+    .quote{padding:18px; border:1px solid rgba(255,255,255,.08); border-radius:14px; background:var(--bg-2)}
+
+    footer{padding:36px 0; border-top:1px solid rgba(255,255,255,.08); background:var(--bg-2); color:var(--muted)}
+    .social{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+
+    /* móvil: menú */
+    @media (max-width: 780px) {
+      nav{
+        position:absolute; top:64px; right:0; background:rgba(0,0,0,0.95);
+        flex-direction:column; align-items:flex-start; padding:20px; border-radius:0 0 0 14px; display:none;
+      }
+      nav.show{ display:flex; }
+      .menu-toggle{ display:block; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <img src="/assets/logo.png" alt="Fuego Rústico logo" />
+        <span class="title">Fuego Rústico</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+
+      <nav id="menu">
+        <a href="#producto">Producto</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+        <a class="btn" href="#contacto">Comprar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <p class="chip">Hecho en Argentina · Acero inoxidable</p>
+        <h1>🔥 FUEGO RÚSTICO</h1>
+        <p>Tu parrilla libre. Cociná donde quieras: río, playa o montaña.</p>
+        <div class="cta">
+          <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20info%20de%20la%20parrilla" target="_blank" rel="noopener">📲 Pedí la tuya por WhatsApp</a>
+          <a class="btn ghost" href="#producto">Ver producto</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTO -->
+    <section id="producto" class="section">
+      <div class="container grid grid-cols-2">
+        <div class="card" style="padding:22px">
+          <img src="/assets/producto-1.png" alt="Parrilla Fuego Rústico" />
+        </div>
+        <div class="card" style="padding:26px; display:flex; flex-direction:column; justify-content:center">
+          <h2 style="margin:0 0 8px">Parrilla de acero inoxidable</h2>
+          <p style="color:var(--muted); margin:0 0 10px">Liviana, resistente y portátil. Lista para tus aventuras.</p>
+          <ul class="list">
+            <li>✅ 100% acero inoxidable 430</li>
+            <li>✅ No se oxida</li>
+            <li>✅ Peso: 6kg</li>
+            <li>✅ Profundidad: 40 cm · Largo: 50 cm · Alto: 63 cm · Altura desmontada: 42 cm</li>
+            <li>✅ Liviana y fácil de transportar</li>
+            <li>✅ Ideal para río, playa, camping y aire libre</li>
+            <li>✅ Para utilizar con leña o carbón</li>
+            <li>✅ Trabaja como parrilla y como horno</li>
+            <li>✅ Doble regulación de entrada de aire</li>
+          </ul>
+
+          <!-- Bloque de acciones de compra -->
+        <div class="cta" style="margin-top:18px; flex-wrap:wrap; justify-content:flex-start; gap:10px">
+          <!-- Opción directa (efectivo / transferencia) -->
+          <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar%20por%20transferencia%20o%20efectivo" 
+             target="_blank" rel="noopener" 
+             title="Precio especial pagando por transferencia o efectivo">
+             💰 Comprar directo (mejor precio)
+          </a>
+        
+          <!-- Opción Mercado Libre -->
+          <a class="btn secondary" href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812"
+             target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px"
+             title="Pago con cuotas y envío gratis por Mercado Libre">
+            <img src="/assets/mercadolibre-logo.png" alt="Mercado Libre" width="90" height="22" loading="lazy" />
+            <span>Cuotas</span>
+          </a>
+        
+          <a class="btn secondary" href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308167072"
+             target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px"
+             title="Pago en un solo pago y envío gratis por Mercado Libre">
+            <img src="/assets/mercadolibre-logo.png" alt="Mercado Libre" width="90" height="22" loading="lazy" />
+            <span>1 pago</span>
+          </a>
+        </div>
+        
+        <p style="color:var(--muted); margin-top:10px; font-size:15px;">
+          💡 Pagando por transferencia o efectivo obtenés el mejor precio.  
+          Si preferís cuotas o envío gratis, podés hacerlo desde Mercado Libre.
+        </p>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="section" style="background:var(--bg-2)">
+      <div class="container">
+        <h2 style="margin-top:0">Donde haya fuego, hay una Fuego Rústico</h2>
+        <div class="gallery" style="margin-top:16px">
+          <img class="span-6" loading="lazy" src="/assets/galeria-1.jpg" alt="Playa" />
+          <img class="span-6" loading="lazy" src="/assets/galeria-2.jpg" alt="En compañía" />
+          <img class="span-4" loading="lazy" src="/assets/galeria-3.jpg" alt="A donde la quieras llevar" />
+          <img class="span-4" loading="lazy" src="/assets/galeria-4.jpg" alt="Montaña" />
+          <img class="span-4" loading="lazy" src="/assets/galeria-5.jpg" alt="Con amigos" />
+          <img class="span-4" loading="lazy" src="/assets/galeria-6.jpg" alt="En la costa" />
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="section">
+      <div class="container">
+        <h2 style="margin-top:0">Lo que dicen quienes la usan</h2>
+        <div class="quotes" style="margin-top:14px">
+          <div class="quote">“La uso en todos los viajes. No falla.”</div>
+          <div class="quote">“Liviana, fuerte y práctica para la chata.”</div>
+          <div class="quote">“Mi mejor compra para la playa. Me olvidé del viento.”</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL / CONTACTO -->
+    <section id="contacto" class="section" style="padding:80px 0; background:radial-gradient(70% 60% at 50% 40%, rgba(255,60,0,.12), rgba(0,0,0,0))">
+      <div class="container" style="text-align:center">
+        <h2 style="margin:0 0 6px">¿Listo para tu próxima aventura?</h2>
+        <p style="color:var(--muted); margin:0 0 18px">Consultas, envíos y stock por WhatsApp.</p>
+        <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20info" target="_blank" rel="noopener">📲 Escribinos ahora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; gap:18px; justify-content:space-between; flex-wrap:wrap">
+      <div class="social">
+        <img src="/assets/logo.png" alt="logo" width="28" height="28" style="border-radius:8px"/>
+        <strong>Fuego Rústico</strong>
+      </div>
+      <div class="social">
+        <!-- Ícono Instagram (inline SVG) -->
+        <a href="https://instagram.com/fuegorustico" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/>
+          </svg>
+          <span>Instagram</span>
+        </a>
+        <span>·</span>
+        <a href="mailto:adm.fuegorustico@gmail.com">hola@fuegorustico.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll suave + cierra menú al navegar
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({behavior:'smooth'});
+          document.getElementById('menu').classList.remove('show');
+          document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
+        }
+      })
+    });
+
+    // Menú hamburguesa
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('menu');
+    toggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('show');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  </script>
+</body>
+</html>
+
