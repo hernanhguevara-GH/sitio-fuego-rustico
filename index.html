@@ -24,16 +24,31 @@
 
     /* Layout */
     .container{width:min(1100px, 92%); margin-inline:auto}
-    header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(160%) blur(6px); background:linear-gradient(180deg, rgba(15,15,15,.9), rgba(15,15,15,.5) 60%, rgba(15,15,15,0)); border-bottom:1px solid rgba(255,255,255,.05)}
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter:saturate(160%) blur(6px);
+      background:linear-gradient(180deg, rgba(15,15,15,.9), rgba(15,15,15,.5) 60%, rgba(15,15,15,0));
+      border-bottom:1px solid rgba(255,255,255,.05)
+    }
+
     .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+
     .brand{display:flex; align-items:center; gap:12px}
     .brand img{width:34px; height:34px; border-radius:8px}
     .brand .title{font-weight:700; letter-spacing:.4px}
-    nav a{opacity:.85; margin-left:18px}
+
+    /* ---- menú principal (desktop) ---- */
+    nav{display:flex; align-items:center; gap:18px}
+    nav a{opacity:.85}
     nav a:hover{opacity:1}
 
     .btn{display:inline-flex; align-items:center; justify-content:center; padding:14px 20px; border-radius:999px; background:linear-gradient(180deg, var(--brand), var(--brand-2)); color:white; font-weight:700; box-shadow:var(--shadow); border:none; cursor:pointer}
     .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.2)}
+
+    /* ---- botón hamburguesa (mobile) ---- */
+    .menu-toggle{
+      display:none; background:none; border:none; color:var(--text); font-size:26px; cursor:pointer; line-height:1
+    }
 
     /* Hero */
     .hero{position:relative; isolation:isolate; min-height:78vh; display:grid; place-items:center; text-align:center}
@@ -56,14 +71,16 @@
     /* Gallery */
     .gallery{display:grid; gap:16px; grid-template-columns:repeat(12,1fr)}
     .gallery img{
-      border-radius: 14px;
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      object-fit: cover; /* Recorta manteniendo proporción */
+      border-radius:14px;
+      width:100%;
+      aspect-ratio: 10 / 7;   /* tus imágenes son 1000x700 */
+      object-fit:cover;
     }
     .span-6{grid-column:span 6}
     .span-4{grid-column:span 4}
-    @media(max-width:780px){.span-6,.span-4{grid-column:span 12}}
+    @media(max-width:780px){
+      .span-6,.span-4{grid-column:span 12}
+    }
 
     /* Testimonials */
     .quotes{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
@@ -74,6 +91,22 @@
     footer{padding:36px 0; border-top:1px solid rgba(255,255,255,.08); background:var(--bg-2); color:var(--muted)}
     .social{display:flex; gap:14px; align-items:center}
     .fine{font-size:13px; opacity:.8}
+
+    /* ---- versión móvil: menú desplegable ---- */
+    @media (max-width: 780px) {
+      nav{
+        position:absolute;
+        top:64px; right:0;
+        background:rgba(0,0,0,0.95);
+        flex-direction:column;
+        align-items:flex-start;
+        padding:20px;
+        border-radius:0 0 0 14px;
+        display:none;
+      }
+      nav.show{ display:flex; }
+      .menu-toggle{ display:block; }
+    }
   </style>
 </head>
 <body>
@@ -83,7 +116,10 @@
         <img src="/assets/logo.png" alt="Fuego Rústico logo" />
         <span class="title">Fuego Rústico</span>
       </a>
-      <nav>
+
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+
+      <nav id="menu">
         <a href="#producto">Producto</a>
         <a href="#galeria">Galería</a>
         <a href="#contacto">Contacto</a>
@@ -100,7 +136,6 @@
         <h1>🔥 FUEGO RÚSTICO</h1>
         <p>Tu parrilla libre. Cociná donde quieras: río, playa o montaña.</p>
         <div class="cta">
-          <!-- ⚠️ Reemplazá 549XXXXXXXXXX por tu número de WhatsApp en formato internacional → 54 + código de área + número sin 0 ni 15 -->
           <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20info%20de%20la%20parrilla" target="_blank" rel="noopener">📲 Pedí la tuya por WhatsApp</a>
           <a class="btn ghost" href="#producto">Ver producto</a>
         </div>
@@ -120,7 +155,7 @@
             <li>✅ 100% acero inoxidable 430</li>
             <li>✅ No se oxida</li>
             <li>✅ Peso: 6kg</li>
-            <li>✅ Profundidad: 40 cm Largo: 50 cm Alto: 63 cm. Altura desmontada: 42 cm.</li>
+            <li>✅ Profundidad: 40 cm · Largo: 50 cm · Alto: 63 cm · Altura desmontada: 42 cm</li>
             <li>✅ Liviana y fácil de transportar</li>
             <li>✅ Ideal para río, playa, camping y aire libre</li>
             <li>✅ Para utilizar con leña o carbón</li>
@@ -128,7 +163,7 @@
             <li>✅ Doble regulación de entrada de aire</li>
           </ul>
           <div style="margin-top:18px" class="cta">
-            <a class="btn" href="https://wa.me/549XXXXXXXXXX?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar%20la%20parrilla" target="_blank" rel="noopener">Comprar ahora</a>
+            <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar%20la%20parrilla" target="_blank" rel="noopener">Comprar ahora</a>
             <a class="btn ghost" href="#galeria">Ver en acción</a>
           </div>
         </div>
@@ -140,12 +175,12 @@
       <div class="container">
         <h2 style="margin-top:0">Donde haya fuego, hay una Fuego Rústico</h2>
         <div class="gallery" style="margin-top:16px">
-          <img class="span-6" src="/assets/galeria-1.jpg" alt="Playa" />
-          <img class="span-6" src="/assets/galeria-2.jpg" alt="En compañia" />
-          <img class="span-4" src="/assets/galeria-3.jpg" alt="A donde la quieras llevar" />
-          <img class="span-4" src="/assets/galeria-4.jpg" alt="Montaña" />
-          <img class="span-4" src="/assets/galeria-5.jpg" alt="Con amigos" />
-          <img class="span-4" src="/assets/galeria-6.jpg" alt="En la costa" />
+          <img class="span-6" loading="lazy" src="/assets/galeria-1.jpg" alt="Playa" />
+          <img class="span-6" loading="lazy" src="/assets/galeria-2.jpg" alt="En compañía" />
+          <img class="span-4" loading="lazy" src="/assets/galeria-3.jpg" alt="A donde la quieras llevar" />
+          <img class="span-4" loading="lazy" src="/assets/galeria-4.jpg" alt="Montaña" />
+          <img class="span-4" loading="lazy" src="/assets/galeria-5.jpg" alt="Con amigos" />
+          <img class="span-4" loading="lazy" src="/assets/galeria-6.jpg" alt="En la costa" />
         </div>
       </div>
     </section>
@@ -157,7 +192,7 @@
         <div class="quotes" style="margin-top:14px">
           <div class="quote">“La uso en todos los viajes. No falla.”</div>
           <div class="quote">“Liviana, fuerte y práctica para la chata.”</div>
-          <div class="quote">“Mi mejor compra para la playa. Me olvidé del viento”</div>
+          <div class="quote">“Mi mejor compra para la playa. Me olvidé del viento.”</div>
         </div>
       </div>
     </section>
@@ -167,7 +202,7 @@
       <div class="container" style="text-align:center">
         <h2 style="margin:0 0 6px">¿Listo para tu próxima aventura?</h2>
         <p style="color:var(--muted); margin:0 0 18px">Consultas, envíos y stock por WhatsApp.</p>
-        <a class="btn" href="https://wa.me/549XXXXXXXXXX?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20info" target="_blank" rel="noopener">📲 Escribinos ahora</a>
+        <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20info" target="_blank" rel="noopener">📲 Escribinos ahora</a>
       </div>
     </section>
   </main>
@@ -189,27 +224,26 @@
   </footer>
 
   <script>
-    // Scroll suave para anclas internas
+    // Scroll suave + cierra menú al navegar
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         const id=a.getAttribute('href');
-        if(id.length>1){ e.preventDefault(); document.querySelector(id).scrollIntoView({behavior:'smooth'}); }
+        if(id.length>1){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({behavior:'smooth'});
+          document.getElementById('menu').classList.remove('show');
+          document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
+        }
       })
-    })
+    });
+
+    // Menú hamburguesa
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('menu');
+    toggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('show');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
