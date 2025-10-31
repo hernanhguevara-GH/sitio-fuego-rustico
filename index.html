@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <link rel="apple-touch-icon" href="/assets/favicon.png" />
-  <meta name="apple-mobile-web-app-title" content="Fuego Rústico" />  
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fuego Rústico — Tu parrilla libre</title>
+  <meta name="author" content="Fuego Rústico" />
   <meta name="description" content="Parrillas de acero inoxidable portátiles. Cociná donde quieras: río, playa, montaña." />
   <meta property="og:title" content="Fuego Rústico — Tu parrilla libre" />
   <meta property="og:description" content="Parrillas de acero inoxidable portátiles. Cociná donde quieras: río, playa, montaña." />
@@ -13,153 +12,113 @@
   <meta property="og:image" content="/assets/og-image.jpg" />
   <meta name="theme-color" content="#ff3c00" />
   <link rel="icon" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/favicon.png" />
   <style>
     :root{
-      --bg:#0f0f0f; --bg-2:#151515; --text:#e9e9e9; --muted:#b9b9b9; --brand:#ff3c00; --brand-2:#ff6a3d; --ok:#22c55e;
+      --bg:#0f0f0f; --bg-2:#151515; --text:#e9e9e9; --muted:#b9b9b9; --brand:#ff3c00; --brand-2:#ff6a3d;
       --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35)
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; color:var(--text); background:var(--bg); line-height:1.5}
+    body{margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; color:var(--text); background:var(--bg); line-height:1.5}
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
 
-    .container{width:min(1100px, 92%); margin-inline:auto}
-    header{
-      position:sticky; top:0; z-index:20;
-      backdrop-filter:saturate(160%) blur(6px);
+    /* Layout */
+    .container{width:min(1100px,92%); margin-inline:auto}
+
+    header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(160%) blur(6px);
       background:linear-gradient(180deg, rgba(15,15,15,.9), rgba(15,15,15,.5) 60%, rgba(15,15,15,0));
-      border-bottom:1px solid rgba(255,255,255,.05)
+      border-bottom:1px solid rgba(255,255,255,.05); box-shadow:0 6px 20px rgba(0,0,0,.25);
     }
     .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-
     .brand{display:flex; align-items:center; gap:12px}
     .brand img{width:34px; height:34px; border-radius:8px}
     .brand .title{font-weight:700; letter-spacing:.4px}
 
-    /* menú desktop */
     nav{display:flex; align-items:center; gap:18px}
     nav a{opacity:.85}
     nav a:hover{opacity:1}
 
-    .btn{display:inline-flex; align-items:center; justify-content:center; padding:14px 20px; border-radius:999px; background:linear-gradient(180deg, var(--brand), var(--brand-2)); color:white; font-weight:700; box-shadow:var(--shadow); border:none; cursor:pointer}
+    .btn{display:inline-flex; align-items:center; justify-content:center; padding:14px 20px; border-radius:999px; background:linear-gradient(180deg,var(--brand),var(--brand-2)); color:white; font-weight:700; box-shadow:var(--shadow); border:none; cursor:pointer}
     .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.2)}
     .btn.secondary{background:transparent; border:1px solid rgba(255,255,255,.2)}
-    .btn + .btn { margin-left: 8px; }
 
-    /* hamburguesa */
     .menu-toggle{display:none; background:none; border:none; color:var(--text); font-size:26px; cursor:pointer; line-height:1}
 
+    /* Hero */
     .hero{position:relative; isolation:isolate; min-height:78vh; display:grid; place-items:center; text-align:center}
     .hero::before{content:''; position:absolute; inset:0; z-index:-2; background:url('/assets/hero.jpeg') center/cover no-repeat fixed}
-    .hero::after{content:''; position:absolute; inset:0; z-index:-1; background: radial-gradient(80% 60% at 50% 40%, rgba(0,0,0,.55), rgba(0,0,0,.85))}
-    .hero h1{font-size:clamp(36px, 6vw, 64px); margin:8px 0}
-    .hero p{max-width: 600px; margin-inline:auto; color:var(--muted); font-size:clamp(16px, 2.2vw, 20px); margin:0 0 24px}
+    .hero::after{content:''; position:absolute; inset:0; z-index:-1; background:radial-gradient(80% 60% at 50% 40%, rgba(0,0,0,.55), rgba(0,0,0,.85))}
+    .hero h1{font-size:clamp(36px,6vw,64px); margin:8px 0}
+    .hero p{color:var(--muted); font-size:clamp(16px,2.2vw,20px); margin:0 0 24px; max-width:600px; margin-inline:auto}
     .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
 
+    /* Sections */
     .section{padding:64px 0; background:var(--bg)}
     .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow)}
     .grid{display:grid; gap:28px}
-    @media(min-width:900px){.grid-cols-2{grid-template-columns:1.1fr .9fr}}
+    @media(min-width:900px){.grid-cols-2{grid-template-columns:1fr 1fr; align-items:center}}
 
     .list{display:grid; gap:10px; margin-top:14px}
     .list li{display:flex; align-items:center; gap:10px; color:var(--text)}
     .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.06); font-size:14px}
 
-    .gallery{display:grid; gap:16px; grid-template-columns:repeat(12,1fr)}
-    .gallery img{
-      border-radius:14px; width:100%;
-      aspect-ratio: 3 / 4; 
-      object-fit:cover;
-    }
-    .gallery img:hover {
-      transform: scale(1.02);
-      transition: transform .3s ease;
-      box-shadow: 0 10px 25px rgba(0,0,0,.4);
-     }
-    .span-6{grid-column:span 6}
-    .span-4{grid-column:span 4}
-    @media(max-width:780px){
-      .span-6,.span-4{grid-column:span 12}
-    }
+    /* Buy block */
+    .buy{display:grid; gap:14px; margin-top:18px}
+    .buy-primary{width:100%; text-align:center}
+    .ml{border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px; background:rgba(255,255,255,.02)}
+    .ml-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px}
+    .ml-label{color:var(--muted); font-size:14px; font-weight:600; letter-spacing:.2px}
+    .ml-options{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .ml-option{display:grid; align-content:center; gap:2px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.03); color:var(--text); text-align:center; transition:transform .15s ease, border-color .15s ease, background .15s ease}
+    .ml-option strong{font-weight:800}
+    .ml-option small{color:var(--muted); font-size:12.5px}
+    .ml-option:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.24); background:rgba(255,255,255,.06)}
+    .buy-hint{color:var(--muted); margin:4px 0 0; font-size:14.5px}
 
+    /* Carousel */
+    .carousel{position:relative; margin-top:16px}
+    .c-viewport{overflow:hidden; border-radius:14px}
+    .c-track{display:flex; transition:transform .4s ease; will-change:transform}
+    .c-slide{min-width:100%; user-select:none}
+    .c-slide img{width:100%; aspect-ratio:3/4; object-fit:cover}
+    .c-prev,.c-next{
+      position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+      background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.25);
+      color:white; width:36px; height:36px; border-radius:999px; display:grid; place-items:center; cursor:pointer
+    }
+    .c-prev{left:6px} .c-next{right:6px}
+    .c-dots{display:flex; gap:6px; justify-content:center; margin-top:10px}
+    .c-dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.35); border:0}
+    .c-dot[aria-current="true"]{background:white}
+
+    /* Testimonials */
     .quotes{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
     @media(max-width:900px){.quotes{grid-template-columns:1fr}}
     .quote{padding:18px; border:1px solid rgba(255,255,255,.08); border-radius:14px; background:var(--bg-2)}
 
+    /* Footer */
     footer{padding:36px 0; border-top:1px solid rgba(255,255,255,.08); background:var(--bg-2); color:var(--muted)}
     .social{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
 
-    /* móvil: menú */
+    /* Mobile nav */
     @media (max-width: 780px) {
-      nav{
-        position:absolute; top:64px; right:0; background:rgba(0,0,0,0.95);
-        flex-direction:column; align-items:flex-start; padding:20px; border-radius:0 0 0 14px; display:none;
-      }
-      nav.show{ display:flex; }
-      .menu-toggle{ display:block; }
+      nav{position:absolute; top:64px; right:0; background:rgba(0,0,0,0.95); flex-direction:column; align-items:flex-start; padding:20px; border-radius:0 0 0 14px; display:none}
+      nav.show{display:flex}
+      .menu-toggle{display:block}
     }
 
-    /* --- Acciones de compra (2 filas limpias) --- */
-    .buy { display: grid; gap: 14px; margin-top: 18px; }
-    .buy-primary { width: 100%; text-align: center; }
-    
-    .ml { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; background: rgba(255,255,255,.02); }
-    .ml-head { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; margin-bottom: 10px; }
-    
-    .ml-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .ml-option {
-      display: grid; align-content: center; gap: 2px;
-      padding: 12px 14px; border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--text); text-align: center;
-      transition: transform .15s ease, border-color .15s ease, background .15s ease;
-    }
-    .ml-option strong { font-weight: 700; }
-    .ml-option small { color: var(--muted); font-size: 12.5px; }
-    
-    .ml-option:hover { transform: translateY(-1px); border-color: rgba(255,255,255,.24); background: rgba(255,255,255,.06); }
-    
-    .buy-hint { color: var(--muted); margin: 4px 0 0; font-size: 14.5px; }
-    
-    /* Mobile: columnas a fila */
-    @media (max-width: 640px){
-      .ml-options { grid-template-columns: 1fr; }
-    }
-
-    .ml { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; background: rgba(255,255,255,.02); }
-    .ml-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
-    .ml-label { color: var(--muted); font-size:14px; font-weight:600; letter-spacing:.2px; }
-    
-    .ml-options { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
-    .ml-option {
-      display:grid; align-content:center; gap:2px;
-      padding:12px 14px; border-radius:12px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.03);
-      color:var(--text); text-align:center;
-      transition:transform .15s ease, border-color .15s ease, background .15s ease;
-    }
-    .ml-option strong { font-weight:800; }
-    .ml-option small { color:var(--muted); font-size:12.5px; }
-    .ml-option:hover { transform:translateY(-1px); border-color:rgba(255,255,255,.24); background:rgba(255,255,255,.06); }
-    
-    @media (max-width:640px){
-      .ml-options { grid-template-columns:1fr; }
-    }
-
+    /* Sticky CTA (mobile) */
     @media(max-width:768px){
       .sticky-cta{
         position:fixed; left:0; right:0; bottom:12px; margin:0 12px;
         background:rgba(15,15,15,.9); border:1px solid rgba(255,255,255,.08);
         border-radius:14px; padding:10px; display:flex; gap:8px;
-        z-index:40; backdrop-filter:blur(6px);
-        box-shadow: 0 0 20px rgba(0,0,0,.5);
-        }
-    } 
-
-</style>
+        z-index:40; backdrop-filter:blur(6px); box-shadow:0 0 20px rgba(0,0,0,.5);
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -168,9 +127,7 @@
         <img src="/assets/logo.png" alt="Fuego Rústico logo" />
         <span class="title">Fuego Rústico</span>
       </a>
-
       <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
-
       <nav id="menu">
         <a href="#producto">Producto</a>
         <a href="#galeria">Galería</a>
@@ -198,79 +155,88 @@
     <section id="producto" class="section">
       <div class="container grid grid-cols-2">
         <div class="card" style="padding:22px">
-          <img src="/assets/producto-1.png" alt="Parrilla Fuego Rústico" />
+          <img src="/assets/producto-1.png" alt="Parrilla Fuego Rústico abierta, acero inoxidable, lista para asar" />
         </div>
         <div class="card" style="padding:26px; display:flex; flex-direction:column; justify-content:center">
           <h2 style="margin:0 0 8px">Parrilla de acero inoxidable</h2>
           <p style="color:var(--muted); margin:0 0 10px">Liviana, resistente y portátil. Lista para tus aventuras.</p>
           <ul class="list">
-            <li>✅ 100% acero inoxidable 430. No se oxida</li>
-            <li>✅ Liviana y fácil de transportar: 6kg</li>
-            <li>✅ Ideal para actividades al aire libre</li>
-            <li>✅ Para utilizar con leña o carbón</li>
-            <li>✅ Trabaja como parrilla y como horno</li>
-            <li>✅ Doble regulación de entrada de aire</li>
-            <details style="color:var(--muted); margin-top:10px;">
-              <summary style="cursor:pointer; color:var(--text); font-weight:600;">Ver especificaciones completas</summary>
-              <p style="margin-top:8px;">✅ Profundidad: 40 cm · Largo: 50 cm · Alto: 63 cm · Altura desmontada: 42 cm</p>
-            </details>
+            <li>✅ 100% acero inoxidable 430</li>
+            <li>✅ No se oxida</li>
+            <li>✅ Peso: 6kg</li>
+            <li>✅ Profundidad: 40 cm · Largo: 50 cm · Alto: 63 cm · Altura desmontada: 42 cm</li>
+            <li>✅ Ideal para río, playa, camping y aire libre</li>
           </ul>
 
-        <!-- ACCIONES DE COMPRA (UX limpio: 2 filas) -->
-        <div class="buy">
-          <p style="color:var(--muted); font-size:15px; margin:4px 0 10px;">
-            Elegí cómo comprar tu parrilla Fuego Rústico 👇
-          </p>
-          
-          <!-- Fila 1: acción primaria -->
-          <a class="btn buy-primary"
-             href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar%20por%20transferencia%20o%20efectivo"
-             target="_blank" rel="noopener"
-             title="Precio especial pagando por transferencia o efectivo">
-            Compra directa (mejor precio)
-          </a>
-          
-          <!-- Fila 2: Mercado Libre (sin logo) -->
-          <div class="ml">
-            <div class="ml-head">
-              <span class="ml-label">A través de Mercado Libre</span>
-            </div>
-            <div class="ml-options">
-              <a class="ml-option"
-                 href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812"
-                 target="_blank" rel="noopener" title="Pago con cuotas y envío gratis">
-                <strong>Cuotas</strong>
-                <small>Envío gratis</small>
-              </a>
-              <a class="ml-option"
-                 href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308167072"
-                 target="_blank" rel="noopener" title="Pago en 1 pago y envío gratis">
-                <strong>1 pago</strong>
-                <small>Envío gratis</small>
-              </a>
-            </div>
-          </div>
-        
-          <p class="buy-hint">
-            Pagando por transferencia o efectivo obtenés el mejor precio.  
-            Si preferís cuotas o envío gratis, comprá por Mercado Libre.
-          </p>
-        </div>
+          <!-- ACCIONES DE COMPRA (2 filas) -->
+          <div class="buy">
+            <p style="color:var(--muted); font-size:15px; margin:4px 0 4px;">
+              Elegí cómo comprar tu parrilla Fuego Rústico 👇
+            </p>
 
+            <!-- Fila 1: acción primaria -->
+            <a class="btn buy-primary"
+               href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar%20por%20transferencia%20o%20efectivo"
+               target="_blank" rel="noopener"
+               title="Precio especial pagando por transferencia o efectivo">
+              Compra directa (mejor precio)
+            </a>
+
+            <!-- Fila 2: Mercado Libre (sin logo) -->
+            <div class="ml">
+              <div class="ml-head">
+                <span class="ml-label">A través de Mercado Libre</span>
+              </div>
+              <div class="ml-options">
+                <a class="ml-option"
+                   href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812"
+                   target="_blank" rel="noopener" title="Pago con cuotas y envío gratis">
+                  <strong>Cuotas</strong>
+                  <small>Envío gratis</small>
+                </a>
+                <a class="ml-option"
+                   href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308167072"
+                   target="_blank" rel="noopener" title="Pago en 1 pago y envío gratis">
+                  <strong>1 pago</strong>
+                  <small>Envío gratis</small>
+                </a>
+              </div>
+            </div>
+
+            <p class="buy-hint">
+              Pagando por transferencia o efectivo obtenés el mejor precio. Si preferís cuotas o envío gratis, comprá por Mercado Libre.
+            </p>
+          </div>
+
+          <!-- Especificaciones completas (plegable) -->
+          <details style="color:var(--muted); margin-top:10px;">
+            <summary style="cursor:pointer; color:var(--text); font-weight:600;">Ver especificaciones completas</summary>
+            <p style="margin-top:8px;">Profundidad: 40 cm · Largo: 50 cm · Alto: 63 cm · Altura desmontada: 42 cm</p>
+            <p style="margin-top:0;">Para utilizar con leña o carbón · Trabaja como parrilla y como horno · Doble regulación de entrada de aire.</p>
+          </details>
+        </div>
       </div>
     </section>
 
-    <!-- GALERÍA -->
+    <!-- GALERÍA con CAROUSEL -->
     <section id="galeria" class="section" style="background:var(--bg-2)">
       <div class="container">
-        <h2 style="margin-top:0">Donde hay fuego, hay una Fuego Rústico</h2>
-        <div class="gallery" style="margin-top:16px">
-          <img class="span-6" loading="lazy" src="/assets/galeria-1.jpg" alt="Playa" />
-          <img class="span-6" loading="lazy" src="/assets/galeria-2.jpg" alt="En compañía" />
-          <img class="span-4" loading="lazy" src="/assets/galeria-3.jpg" alt="A donde la quieras llevar" />
-          <img class="span-4" loading="lazy" src="/assets/galeria-4.jpg" alt="Montaña" />
-          <img class="span-4" loading="lazy" src="/assets/galeria-5.jpg" alt="Con amigos" />
-          <img class="span-4" loading="lazy" src="/assets/galeria-6.jpg" alt="En la costa" />
+        <h2 style="margin-top:0">Donde haya fuego, hay una Fuego Rústico</h2>
+
+        <div class="carousel" aria-label="Galería de fotos">
+          <button class="c-prev" aria-label="Anterior" type="button">‹</button>
+          <div class="c-viewport">
+            <ul class="c-track">
+              <li class="c-slide"><img src="/assets/galeria-1.jpg" alt="Parrilla en la playa al atardecer"></li>
+              <li class="c-slide"><img src="/assets/galeria-2.jpg" alt="Parrilla con amigos en camping"></li>
+              <li class="c-slide"><img src="/assets/galeria-3.jpg" alt="Cocinando al aire libre"></li>
+              <li class="c-slide"><img src="/assets/galeria-4.jpg" alt="Parrilla en la montaña"></li>
+              <li class="c-slide"><img src="/assets/galeria-5.jpg" alt="Encuentro con amigos"></li>
+              <li class="c-slide"><img src="/assets/galeria-6.jpg" alt="Parrilla en la costa"></li>
+            </ul>
+          </div>
+          <button class="c-next" aria-label="Siguiente" type="button">›</button>
+          <div class="c-dots" aria-label="Indicadores"></div>
         </div>
       </div>
     </section>
@@ -280,9 +246,9 @@
       <div class="container">
         <h2 style="margin-top:0">Lo que dicen quienes la usan</h2>
         <div class="quotes" style="margin-top:14px">
-          <div class="quote">“La uso en todos los viajes. No falla.”</div>
-          <div class="quote">“Liviana, fuerte y práctica para la chata.”</div>
-          <div class="quote">“Mi mejor compra para la playa. Me olvidé del viento.”</div>
+          <div class="quote">“La uso en todos los viajes. No falla.” <br><small>– Diego, Río Paraná</small></div>
+          <div class="quote">“Liviana, fuerte y práctica para la chata.” <br><small>– Lucho, GBA</small></div>
+          <div class="quote">“Mi mejor compra para la playa. Me olvidé del viento.” <br><small>– Sol, Costa Atlántica</small></div>
         </div>
       </div>
     </section>
@@ -291,7 +257,6 @@
     <section id="contacto" class="section" style="padding:80px 0; background:radial-gradient(70% 60% at 50% 40%, rgba(255,60,0,.12), rgba(0,0,0,0))">
       <div class="container" style="text-align:center">
         <h2 style="margin:0 0 6px">¿Listo para tu próxima aventura?</h2>
-        <p style="color:var(--muted); margin:0 0 18px">Consultas, envíos y stock por WhatsApp.</p>
         <p style="color:var(--muted); margin:0 0 18px">🚚 Envíos a todo el país · 💬 Atención personalizada</p>
         <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20info" target="_blank" rel="noopener">📲 Escribinos ahora</a>
       </div>
@@ -305,7 +270,6 @@
         <strong>Fuego Rústico</strong>
       </div>
       <div class="social">
-        <!-- Ícono Instagram (inline SVG) -->
         <a href="https://instagram.com/fuegorustico" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/>
@@ -320,8 +284,14 @@
     </div>
   </footer>
 
+  <!-- Sticky CTA (mobile) -->
+  <div class="sticky-cta" aria-label="Acciones rápidas">
+    <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar" target="_blank">Comprar directo</a>
+    <a class="btn ghost" href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812" target="_blank">Mercado Libre</a>
+  </div>
+
   <script>
-    // Scroll suave + cierra menú al navegar
+    // Navegación suave + cerrar menú
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         const id=a.getAttribute('href');
@@ -329,30 +299,68 @@
           e.preventDefault();
           document.querySelector(id).scrollIntoView({behavior:'smooth'});
           document.getElementById('menu').classList.remove('show');
-          document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
+          const t=document.querySelector('.menu-toggle'); if(t) t.setAttribute('aria-expanded','false');
         }
-      })
+      });
     });
-
-    // Menú hamburguesa
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('menu');
-    toggle.addEventListener('click', () => {
+    if(toggle){ toggle.addEventListener('click', () => {
       const isOpen = nav.classList.toggle('show');
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
+    });}
+
+    // Carousel básico accesible
+    (function(){
+      const track = document.querySelector('.c-track');
+      const slides = Array.from(document.querySelectorAll('.c-slide'));
+      const prev = document.querySelector('.c-prev');
+      const next = document.querySelector('.c-next');
+      const dotsWrap = document.querySelector('.c-dots');
+      if(!track || slides.length===0) return;
+
+      let index = 0;
+      const go = (i)=>{
+        index = (i+slides.length)%slides.length;
+        track.style.transform = `translateX(-${index*100}%)`;
+        Array.from(dotsWrap.children).forEach((d,di)=>d.setAttribute('aria-current', di===index ? 'true':'false'));
+      };
+
+      // Dots
+      slides.forEach((_,i)=>{
+        const b=document.createElement('button');
+        b.className='c-dot';
+        b.type='button';
+        b.setAttribute('aria-label','Ir a la imagen '+(i+1));
+        b.addEventListener('click',()=>go(i));
+        dotsWrap.appendChild(b);
+      });
+
+      if(prev) prev.addEventListener('click',()=>go(index-1));
+      if(next) next.addEventListener('click',()=>go(index+1));
+
+      // Teclado
+      document.addEventListener('keydown', (e)=>{
+        if(e.key==='ArrowLeft') go(index-1);
+        if(e.key==='ArrowRight') go(index+1);
+      });
+
+      // Swipe táctil
+      let startX=null;
+      track.addEventListener('touchstart',e=>{ startX=e.touches[0].clientX; },{passive:true});
+      track.addEventListener('touchmove',e=>{
+        if(startX===null) return;
+        const dx=e.touches[0].clientX-startX;
+        if(Math.abs(dx)>50){ go(index+(dx<0?1:-1)); startX=null; }
+      },{passive:true});
+
+      // Auto-play (opcional, 5s)
+      let timer=setInterval(()=>go(index+1), 5000);
+      document.querySelector('.carousel').addEventListener('mouseenter',()=>clearInterval(timer));
+      document.querySelector('.carousel').addEventListener('mouseleave',()=>{ timer=setInterval(()=>go(index+1),5000); });
+
+      go(0);
+    })();
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
