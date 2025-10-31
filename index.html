@@ -121,7 +121,28 @@
       .ml-options { grid-template-columns: 1fr; }
     }
 
-  </style>
+    .ml { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; background: rgba(255,255,255,.02); }
+    .ml-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+    .ml-label { color: var(--muted); font-size:14px; font-weight:600; letter-spacing:.2px; }
+    
+    .ml-options { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    .ml-option {
+      display:grid; align-content:center; gap:2px;
+      padding:12px 14px; border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      color:var(--text); text-align:center;
+      transition:transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .ml-option strong { font-weight:800; }
+    .ml-option small { color:var(--muted); font-size:12.5px; }
+    .ml-option:hover { transform:translateY(-1px); border-color:rgba(255,255,255,.24); background:rgba(255,255,255,.06); }
+    
+    @media (max-width:640px){
+      .ml-options { grid-template-columns:1fr; }
+    }
+
+</style>
 </head>
 <body>
   <header>
@@ -168,7 +189,7 @@
           <ul class="list">
             <li>✅ 100% acero inoxidable 430. No es oxida</li>
             <li>✅ Liviana y fácil de transportar: 6kg</li>
-            <li>✅ P: 40cm · L: 50cm · A: 63cm · Desmontada:42 cm</li>
+            <li>✅ P: 40cm · L: 50cm · A: 63cm · Desmontada: 42 cm</li>
             <li>✅ Ideal para actividades al aire libre</li>
             <li>✅ Para utilizar con leña o carbón</li>
             <li>✅ Trabaja como parrilla y como horno</li>
@@ -185,28 +206,29 @@
             Compra directa (mejor precio)
           </a>
         
-          <!-- Fila 2: Mercado Libre -->
+          <!-- Fila 2: Mercado Libre (sin logo) -->
           <div class="ml">
             <div class="ml-head">
-              <img src="/assets/mercadolibre-logo.png" alt="Mercado Libre" width="120" height="32" loading="lazy" />
-              <span>Elige cómo pagar</span>
+              <span class="ml-label">A través de Mercado Libre</span>
             </div>
-        
+          
             <div class="ml-options">
-              <a class="ml-option" href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812"
+              <a class="ml-option"
+                 href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812"
                  target="_blank" rel="noopener" title="Pago con cuotas y envío gratis">
                 <strong>Cuotas</strong>
                 <small>Envío gratis</small>
               </a>
-        
-              <a class="ml-option" href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308167072"
+          
+              <a class="ml-option"
+                 href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308167072"
                  target="_blank" rel="noopener" title="Pago en 1 pago y envío gratis">
                 <strong>1 pago</strong>
                 <small>Envío gratis</small>
               </a>
             </div>
           </div>
-        
+
           <p class="buy-hint">
             Pagando por transferencia o efectivo obtenés el mejor precio. Si preferís cuotas o envío gratis, comprá por Mercado Libre.
           </p>
@@ -298,6 +320,7 @@
   </script>
 </body>
 </html>
+
 
 
 
