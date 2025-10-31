@@ -54,7 +54,7 @@
     .hero::before{content:''; position:absolute; inset:0; z-index:-2; background:url('/assets/hero.jpeg') center/cover no-repeat fixed}
     .hero::after{content:''; position:absolute; inset:0; z-index:-1; background: radial-gradient(80% 60% at 50% 40%, rgba(0,0,0,.55), rgba(0,0,0,.85))}
     .hero h1{font-size:clamp(36px, 6vw, 64px); margin:8px 0}
-    .hero p{color:var(--muted); font-size:clamp(16px, 2.2vw, 20px); margin:0 0 24px}
+    .hero p{max-width: 600px; margin-inline:auto; color:var(--muted); font-size:clamp(16px, 2.2vw, 20px); margin:0 0 24px}
     .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
 
     .section{padding:64px 0; background:var(--bg)}
@@ -75,6 +75,7 @@
     .gallery img:hover {
       transform: scale(1.02);
       transition: transform .3s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,.4);
      }
     .span-6{grid-column:span 6}
     .span-4{grid-column:span 4}
@@ -154,6 +155,7 @@
         background:rgba(15,15,15,.9); border:1px solid rgba(255,255,255,.08);
         border-radius:14px; padding:10px; display:flex; gap:8px;
         z-index:40; backdrop-filter:blur(6px);
+        box-shadow: 0 0 20px rgba(0,0,0,.5);
         }
     } 
 
@@ -210,12 +212,16 @@
             <li>✅ Doble regulación de entrada de aire</li>
             <details style="color:var(--muted); margin-top:10px;">
               <summary style="cursor:pointer; color:var(--text); font-weight:600;">Ver especificaciones completas</summary>
-              <p style="margin-top:8px;">Profundidad: 40 cm · Largo: 50 cm · Alto: 63 cm · Altura desmontada: 42 cm</p>
+              <p style="margin-top:8px;">✅ Profundidad: 40 cm · Largo: 50 cm · Alto: 63 cm · Altura desmontada: 42 cm</p>
             </details>
           </ul>
 
         <!-- ACCIONES DE COMPRA (UX limpio: 2 filas) -->
         <div class="buy">
+          <p style="color:var(--muted); font-size:15px; margin:4px 0 10px;">
+            Elegí cómo comprar tu parrilla Fuego Rústico 👇
+          </p>
+          
           <!-- Fila 1: acción primaria -->
           <a class="btn buy-primary"
              href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar%20por%20transferencia%20o%20efectivo"
@@ -223,13 +229,12 @@
              title="Precio especial pagando por transferencia o efectivo">
             Compra directa (mejor precio)
           </a>
-        
+          
           <!-- Fila 2: Mercado Libre (sin logo) -->
           <div class="ml">
             <div class="ml-head">
               <span class="ml-label">A través de Mercado Libre</span>
             </div>
-          
             <div class="ml-options">
               <a class="ml-option"
                  href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812"
@@ -237,7 +242,6 @@
                 <strong>Cuotas</strong>
                 <small>Envío gratis</small>
               </a>
-          
               <a class="ml-option"
                  href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308167072"
                  target="_blank" rel="noopener" title="Pago en 1 pago y envío gratis">
@@ -246,11 +250,10 @@
               </a>
             </div>
           </div>
-          <p style="color:var(--muted); font-size:15px; margin:4px 0 10px;">
-            Elegí cómo comprar tu parrilla Fuego Rústico 👇
-          </p>  
+        
           <p class="buy-hint">
-            Pagando por transferencia o efectivo obtenés el mejor precio. Si preferís cuotas o envío gratis, comprá por Mercado Libre.
+            Pagando por transferencia o efectivo obtenés el mejor precio.  
+            Si preferís cuotas o envío gratis, comprá por Mercado Libre.
           </p>
         </div>
 
@@ -345,6 +348,7 @@
 </div>
 </body>
 </html>
+
 
 
 
