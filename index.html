@@ -92,6 +92,35 @@
       nav.show{ display:flex; }
       .menu-toggle{ display:block; }
     }
+
+    /* --- Acciones de compra (2 filas limpias) --- */
+    .buy { display: grid; gap: 14px; margin-top: 18px; }
+    .buy-primary { width: 100%; text-align: center; }
+    
+    .ml { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; background: rgba(255,255,255,.02); }
+    .ml-head { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; margin-bottom: 10px; }
+    
+    .ml-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ml-option {
+      display: grid; align-content: center; gap: 2px;
+      padding: 12px 14px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--text); text-align: center;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .ml-option strong { font-weight: 700; }
+    .ml-option small { color: var(--muted); font-size: 12.5px; }
+    
+    .ml-option:hover { transform: translateY(-1px); border-color: rgba(255,255,255,.24); background: rgba(255,255,255,.06); }
+    
+    .buy-hint { color: var(--muted); margin: 4px 0 0; font-size: 14.5px; }
+    
+    /* Mobile: columnas a fila */
+    @media (max-width: 640px){
+      .ml-options { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
@@ -148,37 +177,43 @@
             <li>✅ Doble regulación de entrada de aire</li>
           </ul>
 
-        <!-- Bloque de acciones de compra -->
-        <div class="cta" style="margin-top:18px; flex-wrap:wrap; justify-content:flex-start; gap:12px">
-          <!-- Botón directo -->
-          <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar%20por%20transferencia%20o%20efectivo"
+        <!-- ACCIONES DE COMPRA (UX limpio: 2 filas) -->
+        <div class="buy">
+          <!-- Fila 1: acción primaria -->
+          <a class="btn buy-primary"
+             href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar%20por%20transferencia%20o%20efectivo"
              target="_blank" rel="noopener"
              title="Precio especial pagando por transferencia o efectivo">
-             💰 Compra directa
+            Compra directa (mejor precio)
           </a>
         
-          <!-- Mercado Libre cuotas -->
-          <a href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812"
-             target="_blank" rel="noopener"
-             title="Pago con cuotas y envío gratis por Mercado Libre"
-             style="display:flex; align-items:center; justify-content:center; padding:10px 16px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); border-radius:999px; transition:all .25s ease;">
-            <img src="/assets/mercadolibre-logo.png" alt="Mercado Libre" width="90" height="28" loading="lazy" style="filter:brightness(1.1); opacity:.9;">
-          </a>
+          <!-- Fila 2: Mercado Libre -->
+          <div class="ml">
+            <div class="ml-head">
+              <img src="/assets/mercadolibre-logo.png" alt="Mercado Libre" width="120" height="32" loading="lazy" />
+              <span>Elige cómo pagar</span>
+            </div>
         
-          <!-- Mercado Libre 1 pago -->
-          <a href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308167072"
-             target="_blank" rel="noopener"
-             title="Pago en un solo pago y envío gratis por Mercado Libre"
-             style="display:flex; align-items:center; justify-content:center; padding:10px 16px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); border-radius:999px; transition:all .25s ease;">
-            <img src="/assets/mercadolibre-logo.png" alt="Mercado Libre" width="90" height="28" loading="lazy" style="filter:brightness(1.1); opacity:.9;">
-          </a>
+            <div class="ml-options">
+              <a class="ml-option" href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812"
+                 target="_blank" rel="noopener" title="Pago con cuotas y envío gratis">
+                <strong>Cuotas</strong>
+                <small>Envío gratis</small>
+              </a>
+        
+              <a class="ml-option" href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308167072"
+                 target="_blank" rel="noopener" title="Pago en 1 pago y envío gratis">
+                <strong>1 pago</strong>
+                <small>Envío gratis</small>
+              </a>
+            </div>
+          </div>
+        
+          <p class="buy-hint">
+            Pagando por transferencia o efectivo obtenés el mejor precio. Si preferís cuotas o envío gratis, comprá por Mercado Libre.
+          </p>
         </div>
 
-        
-        <p style="color:var(--muted); margin-top:10px; font-size:15px;">
-          💡 Pagando por transferencia o efectivo obtenés el mejor precio.  
-          Si preferís cuotas o envío gratis, podés hacerlo desde Mercado Libre.
-        </p>
       </div>
     </section>
 
@@ -265,6 +300,7 @@
   </script>
 </body>
 </html>
+
 
 
 
