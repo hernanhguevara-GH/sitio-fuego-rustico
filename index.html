@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <link rel="apple-touch-icon" href="/assets/favicon.png" />
+  <meta name="apple-mobile-web-app-title" content="Fuego Rústico" />  
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fuego Rústico — Tu parrilla libre</title>
@@ -50,7 +52,7 @@
 
     .hero{position:relative; isolation:isolate; min-height:78vh; display:grid; place-items:center; text-align:center}
     .hero::before{content:''; position:absolute; inset:0; z-index:-2; background:url('/assets/hero.jpeg') center/cover no-repeat fixed}
-    .hero::after{content:''; position:absolute; inset:0; z-index:-1; background:radial-gradient(80% 60% at 50% 40%, rgba(0,0,0,.35), rgba(0,0,0,.82))}
+    .hero::after{content:''; position:absolute; inset:0; z-index:-1; background: radial-gradient(80% 60% at 50% 40%, rgba(0,0,0,.55), rgba(0,0,0,.85))}
     .hero h1{font-size:clamp(36px, 6vw, 64px); margin:8px 0}
     .hero p{color:var(--muted); font-size:clamp(16px, 2.2vw, 20px); margin:0 0 24px}
     .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
@@ -70,6 +72,10 @@
       aspect-ratio: 3 / 4; 
       object-fit:cover;
     }
+    .gallery img:hover {
+      transform: scale(1.02);
+      transition: transform .3s ease;
+     }
     .span-6{grid-column:span 6}
     .span-4{grid-column:span 4}
     @media(max-width:780px){
@@ -142,6 +148,15 @@
       .ml-options { grid-template-columns:1fr; }
     }
 
+    @media(max-width:768px){
+      .sticky-cta{
+        position:fixed; left:0; right:0; bottom:12px; margin:0 12px;
+        background:rgba(15,15,15,.9); border:1px solid rgba(255,255,255,.08);
+        border-radius:14px; padding:10px; display:flex; gap:8px;
+        z-index:40; backdrop-filter:blur(6px);
+        }
+    } 
+
 </style>
 </head>
 <body>
@@ -167,7 +182,7 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container">
-        <p class="chip">Hecho en Argentina · Acero inoxidable</p>
+        <p class="chip">100% acero inoxidable · Hecha en Argentina 🇦🇷</p>
         <h1>🔥 FUEGO RÚSTICO</h1>
         <p>Tu parrilla libre. Cociná donde quieras: río, playa o montaña.</p>
         <div class="cta">
@@ -187,13 +202,16 @@
           <h2 style="margin:0 0 8px">Parrilla de acero inoxidable</h2>
           <p style="color:var(--muted); margin:0 0 10px">Liviana, resistente y portátil. Lista para tus aventuras.</p>
           <ul class="list">
-            <li>✅ 100% acero inoxidable 430. No es oxida</li>
+            <li>✅ 100% acero inoxidable 430. No se oxida</li>
             <li>✅ Liviana y fácil de transportar: 6kg</li>
-            <li>✅ P: 40cm · L: 50cm · A: 63cm · Desmontada: 42 cm</li>
             <li>✅ Ideal para actividades al aire libre</li>
             <li>✅ Para utilizar con leña o carbón</li>
             <li>✅ Trabaja como parrilla y como horno</li>
             <li>✅ Doble regulación de entrada de aire</li>
+            <details style="color:var(--muted); margin-top:10px;">
+              <summary style="cursor:pointer; color:var(--text); font-weight:600;">Ver especificaciones completas</summary>
+              <p style="margin-top:8px;">Profundidad: 40 cm · Largo: 50 cm · Alto: 63 cm · Altura desmontada: 42 cm</p>
+            </details>
           </ul>
 
         <!-- ACCIONES DE COMPRA (UX limpio: 2 filas) -->
@@ -228,7 +246,9 @@
               </a>
             </div>
           </div>
-
+          <p style="color:var(--muted); font-size:15px; margin:4px 0 10px;">
+            Elegí cómo comprar tu parrilla Fuego Rústico 👇
+          </p>  
           <p class="buy-hint">
             Pagando por transferencia o efectivo obtenés el mejor precio. Si preferís cuotas o envío gratis, comprá por Mercado Libre.
           </p>
@@ -270,6 +290,7 @@
         <h2 style="margin:0 0 6px">¿Listo para tu próxima aventura?</h2>
         <p style="color:var(--muted); margin:0 0 18px">Consultas, envíos y stock por WhatsApp.</p>
         <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20info" target="_blank" rel="noopener">📲 Escribinos ahora</a>
+        <p style="color:var(--muted); margin:0 0 18px">🚚 Envíos a todo el país · 💬 Atención personalizada</p>
       </div>
     </section>
   </main>
@@ -318,8 +339,13 @@
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   </script>
+  <div class="sticky-cta">
+  <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar" target="_blank">Comprar directo</a>
+  <a class="btn ghost" href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812" target="_blank">Mercado Libre</a>
+</div>
 </body>
 </html>
+
 
 
 
