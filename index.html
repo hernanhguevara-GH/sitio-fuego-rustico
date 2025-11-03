@@ -224,6 +224,43 @@
       .menu-toggle{display:block}
     }
 
+    /* --- FIX CAROUSEL MOBILE (no recortes y 1 slide por vista) --- */
+    .c-track{ gap:0; } /* sin separación entre slides */
+    
+    .c-slide{
+      flex: 0 0 100%;   /* ocupa exactamente el 100% del viewport */
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 0;       /* evita que el padding empuje y se asome la siguiente */
+    }
+    
+    /* Desktop/tablet: altura uniforme y contienen la imagen */
+    @media (min-width: 769px){
+      .c-viewport{ height: clamp(320px, 55vh, 620px); }
+      .c-slide{ height: 100%; display:flex; align-items:center; justify-content:center; }
+      .c-slide img{
+        max-height:100%;
+        width:auto;
+        height:100%;
+        object-fit: contain;
+        border-radius:12px;
+      }
+    }
+    
+    /* Mobile: que la altura se adapte y la imagen no se recorte */
+    @media (max-width: 768px){
+      .c-viewport{ height: auto; }          /* deja que crezca en alto si la foto lo necesita */
+      .c-slide{ height: auto; }
+      .c-slide img{
+        width: 100%;
+        height: auto !important;            /* anula el height:100% anterior */
+        max-height: none;
+        object-fit: contain;                 /* no recorta */
+        border-radius: 10px;
+      }
+    }
+
+    
   </style>
 </head>
 <body>
@@ -481,6 +518,7 @@
   </script>
 </body>
 </html>
+
 
 
 
