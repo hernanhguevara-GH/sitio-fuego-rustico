@@ -1,529 +1,271 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
   <title>Fuego Rústico — Tu parrilla libre</title>
-  <meta name="description" content="Parrillas portátiles de acero inoxidable (Argentina). Llevá el fuego a donde quieras: río, playa o montaña. Compra directa o Mercado Libre." />
-  <link rel="canonical" href="https://fuegorustico.com/">
-  
-  <!-- Open Graph (social/WhatsApp/FB/IG) -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Fuego Rústico">
-  <meta property="og:title" content="Fuego Rústico — Tu parrilla libre">
-  <meta property="og:description" content="Parrillas portátiles de acero inoxidable (Argentina). Llevá el fuego a donde quieras.">
-  <meta property="og:url" content="https://fuegorustico.com/">
-  <meta property="og:image" content="https://fuegorustico.com/assets/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:locale" content="es_AR">
-  
-  <!-- Twitter/X -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Fuego Rústico — Tu parrilla libre">
-  <meta name="twitter:description" content="Parrillas portátiles de acero inoxidable (Argentina).">
-  <meta name="twitter:image" content="https://fuegorustico.com/assets/og-image.png">
-  
-  <!-- PWA / color del browser -->
-  <meta name="theme-color" content="#ff3c00">
-  
-  <!-- Iconografía -->
-  <link rel="icon" href="/assets/favicon.png">
-  <link rel="apple-touch-icon" href="/assets/favicon.png">
-  
-  <!-- Performance -->
-  <link rel="preload" as="image" href="/assets/hero.jpeg" imagesrcset="/assets/hero.jpeg">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Fuego Rústico",
-    "url":"https://fuegorustico.com/",
-    "logo":"https://fuegorustico.com/assets/logo.png",
-    "sameAs":["https://www.instagram.com/fuegorustico"]
-  }
-  </script>
-  
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebSite",
-    "name":"Fuego Rústico",
-    "url":"https://fuegorustico.com/"
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Product",
-    "name":"Parrilla portátil de acero inoxidable",
-    "brand":{"@type":"Brand","name":"Fuego Rústico"},
-    "image":"https://fuegorustico.com/assets/producto-1.png",
-    "description":"Parrilla portátil 100% acero inoxidable. Liviana, resistente y pensada para cocinar al aire libre: playa, río o montaña.",
-    "material":"Stainless Steel",
-    "category":"OutdoorGrill",
-    "url":"https://fuegorustico.com/#producto"
-  }
-  </script>
+  <meta name="description" content="Parrillas portátiles de acero inoxidable para cocinar al aire libre. Llevá tu parrilla a la playa, río o patio. Fuego Rústico: Tu parrilla libre." />
+  <link rel="icon" href="/assets/favicon.png" />
+  <!-- Preload hero (sin Google Fonts innecesarios) -->
+  <link rel="preload" as="image" href="/assets/hero.jpg" />
 
   <style>
     :root{
-      --bg:#0f0f0f; --bg-2:#151515; --text:#e9e9e9; --muted:#b9b9b9; --brand:#ff3c00; --brand-2:#ff6a3d;
-      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35)
+      --bg: #0b0b0b;
+      --fg: #f4f4f4;
+      --muted: #c7c7c7;
+      --accent: #ff521b; /* toque cálido */
+      --card: rgba(255,255,255,0.04);
+      --bord: rgba(255,255,255,0.12);
+      --shadow: 0 8px 30px rgba(0,0,0,.35);
     }
-    *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; color:var(--text); background:var(--bg); line-height:1.5}
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
-
-    /* Layout */
-    .container{width:min(1100px,92%); margin-inline:auto}
-
-    header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(160%) blur(6px);
-      background:linear-gradient(180deg, rgba(15,15,15,.9), rgba(15,15,15,.5) 60%, rgba(15,15,15,0));
-      border-bottom:1px solid rgba(255,255,255,.05); box-shadow:0 6px 20px rgba(0,0,0,.25);
+    body{
+      margin:0; background:var(--bg); color:var(--fg); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
     }
-    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:12px}
-    .brand img{width:34px; height:34px; border-radius:8px}
-    .brand .title{font-weight:700; letter-spacing:.4px}
 
-    nav{display:flex; align-items:center; gap:18px}
-    nav a{opacity:.85}
-    nav a:hover{opacity:1}
+    /* Layout base */
+    .container{ width:min(1100px, 92vw); margin:0 auto; }
+    header{ position:sticky; top:0; z-index:10; backdrop-filter: blur(6px); background: linear-gradient(180deg, rgba(0,0,0,.6), rgba(0,0,0,.1)); border-bottom:1px solid var(--bord); }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:12px 0; }
+    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--fg); }
+    .brand img{ width:36px; height:36px; border-radius:8px }
+    .brand span{ font-weight:700; letter-spacing:.3px }
 
-    .btn{display:inline-flex; align-items:center; justify-content:center; padding:14px 20px; border-radius:999px; background:linear-gradient(180deg,var(--brand),var(--brand-2)); color:white; font-weight:700; box-shadow:var(--shadow); border:none; cursor:pointer}
-    .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.2)}
-    .btn.secondary{background:transparent; border:1px solid rgba(255,255,255,.2)}
+    .nav-actions{ display:flex; gap:10px }
+    .btn{ appearance:none; border:1px solid var(--bord); background: var(--card); color:var(--fg); padding:10px 14px; border-radius:12px; cursor:pointer; transition: transform .06s ease, background .2s ease, border-color .2s ease; box-shadow:none; }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.06); }
+    .btn--accent{ background: var(--accent); border-color: transparent; color:#111; font-weight:700 }
+    .btn--ghost{ background: transparent }
 
-    .menu-toggle{display:none; background:none; border:none; color:var(--text); font-size:26px; cursor:pointer; line-height:1}
+    /* Hero con imagen <img> para fetchpriority */
+    .hero{ position:relative; overflow:hidden; }
+    .hero-img{ width:100%; height: clamp(360px, 62vh, 760px); object-fit: cover; display:block; filter: saturate(1.05) contrast(1.05); }
+    .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.25) 40%, rgba(0,0,0,.65)); }
+    .hero-content{ position:absolute; inset:0; display:grid; place-items:center; text-align:center; padding: 0 16px; }
+    .hero h1{ font-size: clamp(28px, 5vw, 56px); margin:0 0 8px; }
+    .hero p{ max-width: 760px; margin: 0 auto 16px; color: var(--muted); font-size: clamp(14px, 2.2vw, 18px); }
 
-    /* Hero */
-    .hero{position:relative; isolation:isolate; min-height:78vh; display:grid; place-items:center; text-align:center}
-    .hero::before{content:''; position:absolute; inset:0; z-index:-2; background:url('/assets/hero.jpeg') center/cover no-repeat fixed}
-    .hero::after{content:''; position:absolute; inset:0; z-index:-1; background:radial-gradient(80% 60% at 50% 40%, rgba(0,0,0,.55), rgba(0,0,0,.85))}
-    .hero h1{font-size:clamp(36px,6vw,64px); margin:8px 0}
-    .hero p{color:var(--muted); font-size:clamp(16px,2.2vw,20px); margin:0 0 24px; max-width:600px; margin-inline:auto}
-    .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
-
-    /* Sections */
-    .section{padding:64px 0; background:var(--bg)}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow)}
-    .grid{display:grid; gap:28px}
-    @media(min-width:900px){.grid-cols-2{grid-template-columns:1fr 1fr; align-items:center}}
-
-    .list{display:grid; gap:10px; margin-top:14px}
-    .list li{display:flex; align-items:center; gap:10px; color:var(--text)}
-    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.06); font-size:14px}
-
-    /* Buy block */
-    .buy{display:grid; gap:14px; margin-top:18px}
-    .buy-primary{width:100%; text-align:center}
-    .ml{border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px; background:rgba(255,255,255,.02)}
-    .ml-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px}
-    .ml-label{color:var(--muted); font-size:14px; font-weight:600; letter-spacing:.2px}
-    .ml-options{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-    .ml-option{display:grid; align-content:center; gap:2px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.03); color:var(--text); text-align:center; transition:transform .15s ease, border-color .15s ease, background .15s ease}
-    .ml-option strong{font-weight:800}
-    .ml-option small{color:var(--muted); font-size:12.5px}
-    .ml-option:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.24); background:rgba(255,255,255,.06)}
-    .buy-hint{color:var(--muted); margin:4px 0 0; font-size:14.5px}
-
-    /* Carousel (fit: no recorta) */
-    .carousel{position:relative; margin-top:16px}
+    /* --- Carousel (CONSOLIDADO) --- */
+    .carousel{ position:relative; margin-top: 24px; }
     .c-viewport{
-      overflow:hidden; border-radius:14px;
-      height: clamp(260px, 60vh, 640px); /* desktop/tablet */
-      background: rgba(255,255,255,.02);
-    }
-    .c-track{display:flex; height:100%; transition:transform .4s ease; will-change:transform}
-    .c-slide{
-      min-width:100%; height:100%;
       display:flex; align-items:center; justify-content:center;
-      padding:8px; /* respiro alrededor */
+      overflow:hidden; border-radius:14px;
+      height: clamp(320px, 55vh, 620px); /* desktop/tablet */
+      background: var(--card);
+      border:1px solid var(--bord);
+      box-shadow: var(--shadow);
     }
-    .c-slide img{
-      max-height:100%;
-      height:100%;
-      width:auto;
-      object-fit: contain;           /* NO recorta */
-      border-radius:12px;
-      aspect-ratio: auto !important; /* anula el 3/4 aquí */
-    }
+    .c-track{ display:flex; height:100%; transition:transform .4s ease; will-change:transform; gap:0 }
+    .c-slide{ flex:0 0 100%; min-width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:0 }
+    .c-slide img{ max-height:100%; width:auto; height:100%; object-fit:contain; border-radius:12px }
 
-    /* Unifica altura del carrusel y centra todas las fotos */
-    .c-viewport {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: clamp(240px, 55vh, 600px); /* altura constante adaptable */
-      background: rgba(255,255,255,.02);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-    
-    .c-slide {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 100%;
-      height: 100%;
-      padding: 8px;
-    }
-    
-    .c-slide img {
-      width: auto;
-      height: 100%;
-      max-height: 100%;
-      object-fit: contain; /* muestra toda la imagen sin recortar */
-      border-radius: 12px;
-    }
-    
-    /* En mobile, reducimos altura */
-    @media (max-width: 768px) {
-      .c-viewport {
-        height: clamp(200px, 45vh, 420px);
+    /* Mobile: altura adaptable, la imagen manda y no recorta */
+    @media (max-width: 768px){
+      .c-viewport{ height:auto }
+      .c-slide{ height:auto }
+      .c-slide img{
+        width:100%; height:auto; max-height:none; object-fit:contain; border-radius:10px
       }
     }
 
-    
-    /* Controles */
+    /* Controles & dots */
     .c-prev,.c-next{
       position:absolute; top:50%; transform:translateY(-50%); z-index:2;
       background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.25);
       color:white; width:36px; height:36px; border-radius:999px; display:grid; place-items:center; cursor:pointer
     }
-    .c-prev{left:6px} .c-next{right:6px}
-    .c-dots{display:flex; gap:6px; justify-content:center; margin-top:10px}
-    .c-dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.35); border:0}
-    .c-dot[aria-current="true"]{background:white}
-    
-    /* Mobile: altura más contenida */
-    @media (max-width: 780px){
-      .c-viewport{ height: clamp(220px, 55vh, 560px); }
-    }
+    .c-prev{ left:6px } .c-next{ right:6px }
+    .c-dots{ display:flex; gap:6px; justify-content:center; margin-top:10px }
+    .c-dot{ width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.35); border:0 }
+    .c-dot[aria-current="true"]{ background:white }
 
-    /* Testimonials */
-    .quotes{display:grid; gap:16px; grid-template-columns:repeat(3,1fr)}
-    @media(max-width:900px){.quotes{grid-template-columns:1fr}}
-    .quote{padding:18px; border:1px solid rgba(255,255,255,.08); border-radius:14px; background:var(--bg-2)}
+    /* Sección features */
+    .grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin: 36px 0 }
+    .card{ background: var(--card); border:1px solid var(--bord); border-radius:16px; padding:18px; }
+    .card h3{ margin:0 0 6px }
+    .card p{ margin:0; color:var(--muted) }
+    @media (max-width: 900px){ .grid{ grid-template-columns: 1fr 1fr } }
+    @media (max-width: 640px){ .grid{ grid-template-columns: 1fr } }
 
     /* Footer */
-    footer{padding:36px 0; border-top:1px solid rgba(255,255,255,.08); background:var(--bg-2); color:var(--muted)}
-    .social{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+    footer{ border-top:1px solid var(--bord); margin-top:40px; }
+    .foot{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; padding:16px 0; color:var(--muted) }
+    .foot small a{ color:var(--muted) }
 
-    /* Mobile nav */
-    @media (max-width: 780px) {
-      nav{position:absolute; top:64px; right:0; background:rgba(0,0,0,0.95); flex-direction:column; align-items:flex-start; padding:20px; border-radius:0 0 0 14px; display:none}
-      nav.show{display:flex}
-      .menu-toggle{display:block}
-    }
-
-    /* --- FIX CAROUSEL MOBILE (no recortes y 1 slide por vista) --- */
-    .c-track{ gap:0; } /* sin separación entre slides */
-    
-    .c-slide{
-      flex: 0 0 100%;   /* ocupa exactamente el 100% del viewport */
-      min-width: 100%;
-      box-sizing: border-box;
-      padding: 0;       /* evita que el padding empuje y se asome la siguiente */
-    }
-    
-    /* Desktop/tablet: altura uniforme y contienen la imagen */
-    @media (min-width: 769px){
-      .c-viewport{ height: clamp(320px, 55vh, 620px); }
-      .c-slide{ height: 100%; display:flex; align-items:center; justify-content:center; }
-      .c-slide img{
-        max-height:100%;
-        width:auto;
-        height:100%;
-        object-fit: contain;
-        border-radius:12px;
-      }
-    }
-    
-    /* Mobile: que la altura se adapte y la imagen no se recorte */
-    @media (max-width: 768px){
-      .c-viewport{ height: auto; }          /* deja que crezca en alto si la foto lo necesita */
-      .c-slide{ height: auto; }
-      .c-slide img{
-        width: 100%;
-        height: auto !important;            /* anula el height:100% anterior */
-        max-height: none;
-        object-fit: contain;                 /* no recorta */
-        border-radius: 10px;
-      }
-    }
-
-    
+    /* Utilidades */
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0 }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <a class="brand" href="#top">
-        <img src="/assets/logo.png" alt="Fuego Rústico logo" />
-        <span class="title">Fuego Rústico</span>
+      <a class="brand" href="/" aria-label="Fuego Rústico, inicio">
+        <img src="/assets/logo.png" alt="Logo Fuego Rústico" />
+        <span>Fuego Rústico</span>
       </a>
-      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
-      <nav id="menu">
-        <a href="#producto">Producto</a>
-        <a href="#galeria">Galería</a>
-        <a href="#contacto">Contacto</a>
-        <a class="btn" href="#contacto">Comprar</a>
+      <nav class="nav-actions" aria-label="Navegación principal">
+        <a class="btn btn--ghost" href="#galeria">Galería</a>
+        <a class="btn btn--ghost" href="#caracteristicas">Características</a>
+        <a class="btn btn--accent" target="_blank" rel="noopener noreferrer" href="https://wa.me/5491112345678?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20saber%20m%C3%A1s">Consultar por WhatsApp</a>
       </nav>
     </div>
   </header>
 
-  <main id="top">
+  <main>
     <!-- HERO -->
-    <section class="hero">
-      <div class="container">
-        <p class="chip">100% acero inoxidable · Hecha en Argentina 🇦🇷</p>
-        <h1>🔥 FUEGO RÚSTICO</h1>
-        <p>Tu parrilla libre. Cociná donde quieras: río, playa o montaña.</p>
-        <div class="cta">
-          <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20info%20de%20la%20parrilla" target="_blank" rel="noopener">📲 Pedí la tuya por WhatsApp</a>
-          <a class="btn ghost" href="#producto">Ver producto</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRODUCTO -->
-    <section id="producto" class="section">
-      <div class="container grid grid-cols-2">
-        <div class="card" style="padding:22px">
-          <img src="/assets/producto-1.png" alt="Parrilla Fuego Rústico abierta, acero inoxidable, lista para asar" />
-        </div>
-        <div class="card" style="padding:26px; display:flex; flex-direction:column; justify-content:center">
-          <h2 style="margin:0 0 8px">Parrilla de acero inoxidable</h2>
-          <p style="color:var(--muted); margin:0 0 10px">Liviana, resistente y portátil. Lista para tus aventuras.</p>
-          <ul class="list">
-            <li>✅ 100% acero inoxidable 430 (no se oxida)</li>
-            <li>✅ Súper liviana · Peso: 6 kg</li>
-            <li>✅ Prof.: 40 cm · Largo: 50 cm · Alto: 63 cm · Desmontada: 42 cm</li>
-            <li>✅ Ideal para actividades al aire libre</li>
-            <li>✅ Funciona como parrilla y como horno · Con leña o carbón</li>
-          </ul>
-
-          <!-- ACCIONES DE COMPRA (2 filas) -->
-          <div class="buy">
-            <p style="color:var(--muted); font-size:15px; margin:4px 0 4px;">
-              Elegí cómo comprar tu parrilla Fuego Rústico 👇
-            </p>
-
-            <!-- Fila 1: acción primaria -->
-            <a class="btn buy-primary"
-               href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20comprar%20por%20transferencia%20o%20efectivo"
-               target="_blank" rel="noopener"
-               title="Precio especial pagando por transferencia o efectivo">
-              Compra directa (mejor precio)
-            </a>
-
-            <!-- Fila 2: Mercado Libre (sin logo) -->
-            <div class="ml">
-              <div class="ml-head">
-                <span class="ml-label">A través de Mercado Libre</span>
-              </div>
-              <div class="ml-options">
-                <a class="ml-option"
-                   href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil-chulengo/p/MLA2037752669?pdp_filters=item_id:MLA2308231812"
-                   target="_blank" rel="noopener" title="Pago con cuotas y envío gratis">
-                  <strong>Cuotas</strong>
-                  <small>Envío gratis</small>
-                </a>
-                <a class="ml-option"
-                   href="https://www.mercadolibre.com.ar/parrilla-inoxidable-portatil--chulengo/up/MLAU3392416723?pdp_filters=item_id:MLA2308167072"
-                   target="_blank" rel="noopener" title="Pago en 1 pago y envío gratis">
-                  <strong>1 pago</strong>
-                  <small>Envío gratis</small>
-                </a>
-              </div>
-            </div>
-
-            <p class="buy-hint">
-              Pagando por transferencia o efectivo obtenés el mejor precio. Si preferís cuotas o envío gratis, comprá por Mercado Libre.
-            </p>
+    <section class="hero" aria-label="Presentación">
+      <img class="hero-img" src="/assets/hero.jpg" alt="Parrilla portátil Fuego Rústico en la playa" fetchpriority="high" />
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="container">
+          <h1>Tu parrilla libre</h1>
+          <p>Parrillas de <strong>acero inoxidable</strong>, portátiles y resistentes. Diseñadas para la playa, el río, la cancha o el patio — donde vos quieras encender el fuego.</p>
+          <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
+            <a class="btn btn--accent" href="#galeria">Ver fotos</a>
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="https://www.mercadolibre.com.ar/" aria-label="Comprar en MercadoLibre (se abre en pestaña nueva)">Comprar en MercadoLibre</a>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- GALERÍA con CAROUSEL -->
-    <section id="galeria" class="section" style="background:var(--bg-2)">
-      <div class="container">
-        <h2 style="margin-top:0">Donde hay fuego, hay una Fuego Rústico</h2>
+    <!-- GALERÍA / CAROUSEL -->
+    <section id="galeria" class="container" aria-label="Galería de producto">
+      <h2 style="margin:24px 0 8px">Galería</h2>
+      <p class="sr-only">Usá las flechas o los puntitos para cambiar de imagen.</p>
 
-        <div class="carousel" aria-label="Galería de fotos">
-          <button class="c-prev" aria-label="Anterior" type="button">‹</button>
-          <div class="c-viewport">
-            <ul class="c-track">
-              <li class="c-slide"><img src="/assets/galeria-1.jpg" alt="Parrilla en la playa al atardecer" loading="lazy" decoding="async" fetchpriority="low"></li>
-              <li class="c-slide"><img src="/assets/galeria-2.jpg" alt="Parrilla con amigos en camping" loading="lazy" decoding="async" fetchpriority="low"></li>
-              <li class="c-slide"><img src="/assets/galeria-3.jpg" alt="Cocinando al aire libre" loading="lazy" decoding="async" fetchpriority="low"></li>
-              <li class="c-slide"><img src="/assets/galeria-4.jpg" alt="Parrilla en la montaña" loading="lazy" decoding="async" fetchpriority="low"></li>
-              <li class="c-slide"><img src="/assets/galeria-5.jpg" alt="Encuentro con amigos" loading="lazy" decoding="async" fetchpriority="low"></li>
-              <li class="c-slide"><img src="/assets/galeria-6.jpg" alt="Parrilla en la costa" loading="lazy" decoding="async" fetchpriority="low"></li>
-            </ul>
+      <div class="carousel">
+        <div class="c-viewport">
+          <div class="c-track" role="list">
+            <div class="c-slide" role="group" aria-label="Imagen 1"><img src="/assets/galeria/1.jpg" alt="Parrilla Fuego Rústico en gazebo con amigos" loading="eager"></div>
+            <div class="c-slide" role="group" aria-label="Imagen 2"><img src="/assets/galeria/2.jpg" alt="Parrilla en río con pescadores" loading="lazy"></div>
+            <div class="c-slide" role="group" aria-label="Imagen 3"><img src="/assets/galeria/3.jpg" alt="Parrilla en parque de casa" loading="lazy"></div>
+            <div class="c-slide" role="group" aria-label="Imagen 4"><img src="/assets/galeria/4.jpg" alt="Parrilla en playa" loading="lazy"></div>
           </div>
-          <button class="c-next" aria-label="Siguiente" type="button">›</button>
-          <div class="c-dots" aria-label="Indicadores"></div>
+          <button class="c-prev" type="button" aria-label="Imagen anterior">‹</button>
+          <button class="c-next" type="button" aria-label="Imagen siguiente">›</button>
         </div>
+        <div class="c-dots" role="tablist" aria-label="Indicadores de carrusel"></div>
       </div>
     </section>
 
-    <section class="section">
-    <div class="container">
-      <h2>Sobre Fuego Rústico</h2>
-      <p>
-        Somos dos amigos fanáticos de las motos, el aire libre y el asado.
-        Pasamos fines de semana entre la arena, el río o la montaña, y siempre nos acompañó una idea:
-        <strong>tener una parrilla que podamos llevar a todos lados</strong>.
-      </p>
-      <p>
-        En cada salida veíamos el mismo problema: parrillas que se oxidaban, que se volaban con el viento
-        o que simplemente no estaban pensadas para viajar. Así nació <strong>Fuego Rústico</strong>,
-        una <strong>parrilla portátil de acero inoxidable</strong>, resistente, compacta y fácil de usar.
-      </p>
-      <p>
-        Queremos que más personas vivan la experiencia de <strong>hacer un asado en cualquier lugar</strong>,
-        sin complicaciones. Porque esto no es solo una parrilla — es una forma de disfrutar el fuego,
-        el momento y la libertad.
-      </p>
-      <p><strong>Fuego Rústico. Tu parrilla libre.</strong></p>
-    </div>
-  </section>
-
-    
-    <!-- TESTIMONIOS -->
-    <section class="section">
-      <div class="container">
-        <h2 style="margin-top:0">Lo que dicen quienes la usan</h2>
-        <div class="quotes" style="margin-top:14px">
-          <div class="quote">“La uso en todos los viajes. No falla.” <br><small>– Diego, Río Paraná</small></div>
-          <div class="quote">“Liviana, fuerte y práctica para la chata. Me resiste el viento patagónico” <br><small>– Matias, Rada Tilly</small></div>
-          <div class="quote">“Mi mejor compra para la playa. Mis amigos felices.” <br><small>– Sol, Costa Atlántica</small></div>
-        </div>
+    <!-- FEATURES -->
+    <section id="caracteristicas" class="container" aria-label="Características">
+      <h2 style="margin:32px 0 8px">Pensada para el aire libre</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Acero inoxidable</h3>
+          <p>Durabilidad alta, fácil limpieza y cero óxido. Ideal para playa, río y humedad.</p>
+        </article>
+        <article class="card">
+          <h3>Portátil</h3>
+          <p>Liviana y compacta para transportar en camioneta, auto o moto. Armado rápido.</p>
+        </article>
+        <article class="card">
+          <h3>Brasas, no llamas</h3>
+          <p>Diseño pensado para cocinar con brasas: calor parejo y controlado.</p>
+        </article>
       </div>
-    </section>
-
-    <!-- CTA FINAL / CONTACTO -->
-    <section id="contacto" class="section" style="padding:80px 0; background:radial-gradient(70% 60% at 50% 40%, rgba(255,60,0,.12), rgba(0,0,0,0))">
-      <div class="container" style="text-align:center">
-        <h2 style="margin:0 0 6px">¿Listo para tu próxima aventura?</h2>
-        <p style="color:var(--muted); margin:0 0 18px">🚚 Envíos a todo el país · 💬 Atención personalizada</p>
-        <a class="btn" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20info" target="_blank" rel="noopener">📲 Escribinos ahora</a>
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <a class="btn btn--accent" target="_blank" rel="noopener noreferrer" href="https://wa.me/5491112345678?text=Hola%20Fuego%20R%C3%BAstico%2C%20quiero%20saber%20m%C3%A1s">Quiero la mía</a>
+        <a class="btn" href="#galeria">Ver más fotos</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container" style="display:flex; gap:18px; justify-content:space-between; flex-wrap:wrap">
-      <div class="social">
-        <img src="/assets/logo.png" alt="logo" width="28" height="28" style="border-radius:8px"/>
-        <strong>Fuego Rústico</strong>
-      </div>
-      <div class="social">
-        <a href="https://instagram.com/fuegorustico" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/>
-            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/>
-            <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/>
-          </svg>
-          <span>Instagram</span>
-        </a>
-        <span>·</span>
-        <a href="mailto:adm.fuegorustico@gmail.com">hola@fuegorustico.com</a>
-      </div>
+    <div class="container foot">
+      <small>© <span id="y"></span> Fuego Rústico</small>
+      <small>Instagram: <a target="_blank" rel="noopener noreferrer" href="https://instagram.com/fuegorustico">@fuegorustico</a></small>
+      <small><a target="_blank" rel="noopener noreferrer" href="https://wa.me/5491112345678">WhatsApp</a></small>
     </div>
   </footer>
 
   <script>
-    // Navegación suave + cerrar menú
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id=a.getAttribute('href');
-        if(id.length>1){
-          e.preventDefault();
-          document.querySelector(id).scrollIntoView({behavior:'smooth'});
-          document.getElementById('menu').classList.remove('show');
-          const t=document.querySelector('.menu-toggle'); if(t) t.setAttribute('aria-expanded','false');
-        }
-      });
+  // Año dinámico en footer
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Carrusel accesible + rendimiento + reduced motion
+  (function(){
+    const carousel = document.querySelector('.carousel');
+    const track = document.querySelector('.c-track');
+    const slides = Array.from(document.querySelectorAll('.c-slide'));
+    const prev = document.querySelector('.c-prev');
+    const next = document.querySelector('.c-next');
+    const dotsWrap = document.querySelector('.c-dots');
+    if(!carousel || !track || slides.length===0) return;
+
+    track.setAttribute('role','list');
+    slides.forEach((li,i)=>{
+      li.setAttribute('role','group');
+      li.setAttribute('aria-label', `Imagen ${i+1} de ${slides.length}`);
     });
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.getElementById('menu');
-    if(toggle){ toggle.addEventListener('click', () => {
-      const isOpen = nav.classList.toggle('show');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });}
 
-    // Carousel básico accesible
-    (function(){
-      const track = document.querySelector('.c-track');
-      const slides = Array.from(document.querySelectorAll('.c-slide'));
-      const prev = document.querySelector('.c-prev');
-      const next = document.querySelector('.c-next');
-      const dotsWrap = document.querySelector('.c-dots');
-      if(!track || slides.length===0) return;
+    let index = 0, timer = null, autoMs = 5000;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      let index = 0;
-      const go = (i)=>{
-        index = (i+slides.length)%slides.length;
-        track.style.transform = `translateX(-${index*100}%)`;
-        Array.from(dotsWrap.children).forEach((d,di)=>d.setAttribute('aria-current', di===index ? 'true':'false'));
-      };
+    const go = (i)=>{
+      index = (i+slides.length)%slides.length;
+      track.style.transform = `translateX(-${index*100}%)`;
+      Array.from(dotsWrap.children).forEach((d,di)=>d.setAttribute('aria-current', di===index ? 'true':'false'));
+    };
 
-      // Dots
-      slides.forEach((_,i)=>{
-        const b=document.createElement('button');
-        b.className='c-dot';
-        b.type='button';
-        b.setAttribute('aria-label','Ir a la imagen '+(i+1));
-        b.addEventListener('click',()=>go(i));
-        dotsWrap.appendChild(b);
-      });
+    slides.forEach((_,i)=>{
+      const b=document.createElement('button');
+      b.className='c-dot'; b.type='button';
+      b.setAttribute('aria-label',`Ir a la imagen ${i+1}`);
+      b.addEventListener('click',()=>go(i));
+      dotsWrap.appendChild(b);
+    });
 
-      if(prev) prev.addEventListener('click',()=>go(index-1));
-      if(next) next.addEventListener('click',()=>go(index+1));
+    const start = ()=>{ if(!prefersReduced && !timer) timer = setInterval(()=>go(index+1), autoMs); };
+    const stop  = ()=>{ if(timer) { clearInterval(timer); timer=null; } };
 
-      // Teclado
-      document.addEventListener('keydown', (e)=>{
-        if(e.key==='ArrowLeft') go(index-1);
-        if(e.key==='ArrowRight') go(index+1);
-      });
+    prev?.addEventListener('click',()=>go(index-1));
+    next?.addEventListener('click',()=>go(index+1));
 
-      // Swipe táctil
-      let startX=null;
-      track.addEventListener('touchstart',e=>{ startX=e.touches[0].clientX; },{passive:true});
-      track.addEventListener('touchmove',e=>{
-        if(startX===null) return;
-        const dx=e.touches[0].clientX-startX;
-        if(Math.abs(dx)>50){ go(index+(dx<0?1:-1)); startX=null; }
-      },{passive:true});
+    // Teclado global
+    document.addEventListener('keydown',(e)=>{
+      if(e.key==='ArrowLeft') go(index-1);
+      if(e.key==='ArrowRight') go(index+1);
+    });
 
-      // Auto-play (opcional, 5s)
-      let timer=setInterval(()=>go(index+1), 5000);
-      document.querySelector('.carousel').addEventListener('mouseenter',()=>clearInterval(timer));
-      document.querySelector('.carousel').addEventListener('mouseleave',()=>{ timer=setInterval(()=>go(index+1),5000); });
+    // Swipe
+    let startX=null;
+    track.addEventListener('touchstart',e=>{ startX=e.touches[0].clientX; },{passive:true});
+    track.addEventListener('touchmove',e=>{
+      if(startX===null) return;
+      const dx=e.touches[0].clientX-startX;
+      if(Math.abs(dx)>50){ go(index+(dx<0?1:-1)); startX=null; }
+    },{passive:true});
 
-      go(0);
-    })();
+    // Pausas inteligentes (viewport + visibilidad + hover)
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(en=>{ en.isIntersecting ? start() : stop(); });
+    },{threshold:0.5});
+    io.observe(carousel);
+
+    document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', ()=>!document.hidden && start());
+
+    go(0); start();
+  })();
+  </script>
+
+  <!-- Structured Data mínimo (Organization) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Fuego Rústico",
+    "url": "https://fuegorustico.example",
+    "logo": "https://fuegorustico.example/assets/logo.png",
+    "sameAs": [
+      "https://instagram.com/fuegorustico"
+    ]
+  }
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
