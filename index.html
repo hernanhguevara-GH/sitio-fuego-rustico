@@ -10,16 +10,13 @@
   <link rel="preload" as="image" href="/assets/hero.jpg" />
 
   <style>
-    :root{
-      --bg: #0b0b0b;
-      --fg: #f4f4f4;
-      --muted: #c7c7c7;
-      --accent: #ff521b; /* toque cálido */
-      --card: rgba(255,255,255,0.04);
-      --bord: rgba(255,255,255,0.12);
-      --shadow: 0 8px 30px rgba(0,0,0,.35);
-    }
+    :root{$1}
+    /* Reset seguro */
+    *,*::before,*::after{ box-sizing:border-box }
+    img{ max-width:100%; height:auto; display:block }
     html,body{height:100%}
+    body{ overflow-x:hidden }
+
     body{
       margin:0; background:var(--bg); color:var(--fg); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
       -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
@@ -27,7 +24,7 @@
 
     /* Layout base */
     .container{ width:min(1100px, 92vw); margin:0 auto; }
-    header{ position:sticky; top:0; z-index:10; backdrop-filter: blur(6px); background: linear-gradient(180deg, rgba(0,0,0,.6), rgba(0,0,0,.1)); border-bottom:1px solid var(--bord); }
+    header{ position:relative; top:auto; z-index:10; backdrop-filter: blur(6px); background: linear-gradient(180deg, rgba(0,0,0,.6), rgba(0,0,0,.1)); border-bottom:1px solid var(--bord); }
     .nav{ display:flex; align-items:center; justify-content:space-between; padding:12px 0; }
     .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--fg); }
     .brand img{ width:36px; height:36px; border-radius:8px }
@@ -208,7 +205,7 @@
     const go = (i)=>{
       index = (i+slides.length)%slides.length;
       track.style.transform = `translateX(-${index*100}%)`;
-      Array.from(dotsWrap.children).forEach((d,di)=>d.setAttribute('aria-current', di===index ? 'true':'false'));
+      (dotsWrap?Array.from(dotsWrap.children):[]).forEach((d,di)=>d.setAttribute('aria-current', di===index ? 'true':'false'));
     };
 
     slides.forEach((_,i)=>{
@@ -216,7 +213,7 @@
       b.className='c-dot'; b.type='button';
       b.setAttribute('aria-label',`Ir a la imagen ${i+1}`);
       b.addEventListener('click',()=>go(i));
-      dotsWrap.appendChild(b);
+      dotsWrap && dotsWrap.appendChild(b);
     });
 
     const start = ()=>{ if(!prefersReduced && !timer) timer = setInterval(()=>go(index+1), autoMs); };
@@ -241,10 +238,14 @@
     },{passive:true});
 
     // Pausas inteligentes (viewport + visibilidad + hover)
+    if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(entries=>{
       entries.forEach(en=>{ en.isIntersecting ? start() : stop(); });
     },{threshold:0.5});
     io.observe(carousel);
+  } else {
+    start();
+  }
 
     document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
     carousel.addEventListener('mouseenter', stop);
