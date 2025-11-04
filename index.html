@@ -261,7 +261,37 @@
     }
 
     
-  </style>
+  
+/* === CONSOLIDADO: Carousel (override final) === */
+.carousel{position:relative; margin-top:16px}
+.c-viewport{
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; border-radius:14px;
+  height: clamp(320px, 55vh, 620px);
+  background: rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.12);
+}
+.c-track{display:flex; height:100%; transition:transform .4s ease; will-change:transform; gap:0}
+.c-slide{flex:0 0 100%; min-width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:0}
+.c-slide img{max-height:100%; width:auto; height:100%; object-fit:contain; border-radius:12px}
+
+@media (max-width: 768px){
+  .c-viewport{ height:auto }
+  .c-slide{ height:auto }
+  .c-slide img{ width:100%; height:auto; max-height:none; object-fit:contain; border-radius:10px }
+}
+
+.c-prev,.c-next{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+  background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.25);
+  color:white; width:36px; height:36px; border-radius:999px; display:grid; place-items:center; cursor:pointer
+}
+.c-prev{left:6px} .c-next{right:6px}
+.c-dots{display:flex; gap:6px; justify-content:center; margin-top:10px}
+.c-dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.35); border:0}
+.c-dot[aria-current="true"]{background:white}
+/* === FIN CONSOLIDADO === */
+</style>
 </head>
 <body>
   <header>
@@ -464,66 +494,79 @@
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });}
 
-    // Carousel básico accesible
-    (function(){
-      const track = document.querySelector('.c-track');
-      const slides = Array.from(document.querySelectorAll('.c-slide'));
-      const prev = document.querySelector('.c-prev');
-      const next = document.querySelector('.c-next');
-      const dotsWrap = document.querySelector('.c-dots');
-      if(!track || slides.length===0) return;
+    // Carousel básico accesible (con defensas + prefers-reduced-motion)
+(function(){
+  const carousel = document.querySelector('.carousel');
+  const track = document.querySelector('.c-track');
+  const slides = Array.from(document.querySelectorAll('.c-slide'));
+  const prev = document.querySelector('.c-prev');
+  const next = document.querySelector('.c-next');
+  const dotsWrap = document.querySelector('.c-dots');
+  if(!carousel || !track || slides.length===0) return;
 
-      let index = 0;
-      const go = (i)=>{
-        index = (i+slides.length)%slides.length;
-        track.style.transform = `translateX(-${index*100}%)`;
-        Array.from(dotsWrap.children).forEach((d,di)=>d.setAttribute('aria-current', di===index ? 'true':'false'));
-      };
+  // A11y
+  track.setAttribute('role','list');
+  slides.forEach((li,i)=>{
+    li.setAttribute('role','group');
+    li.setAttribute('aria-label', `Imagen ${i+1} de ${slides.length}`);
+  });
 
-      // Dots
-      slides.forEach((_,i)=>{
-        const b=document.createElement('button');
-        b.className='c-dot';
-        b.type='button';
-        b.setAttribute('aria-label','Ir a la imagen '+(i+1));
-        b.addEventListener('click',()=>go(i));
-        dotsWrap.appendChild(b);
-      });
+  let index = 0, timer = null, autoMs = 5000;
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      if(prev) prev.addEventListener('click',()=>go(index-1));
-      if(next) next.addEventListener('click',()=>go(index+1));
+  const go = (i)=>{
+    index = (i+slides.length)%slides.length;
+    track.style.transform = `translateX(-${index*100}%)`;
+    (dotsWrap ? Array.from(dotsWrap.children) : []).forEach((d,di)=>d.setAttribute('aria-current', di===index ? 'true':'false'));
+  };
 
-      // Teclado
-      document.addEventListener('keydown', (e)=>{
-        if(e.key==='ArrowLeft') go(index-1);
-        if(e.key==='ArrowRight') go(index+1);
-      });
+  // Dots
+  if (dotsWrap) {
+    slides.forEach((_,i)=>{
+      const b=document.createElement('button');
+      b.className='c-dot'; b.type='button';
+      b.setAttribute('aria-label',`Ir a la imagen ${i+1}`);
+      b.addEventListener('click',()=>go(i));
+      dotsWrap.appendChild(b);
+    });
+  }
 
-      // Swipe táctil
-      let startX=null;
-      track.addEventListener('touchstart',e=>{ startX=e.touches[0].clientX; },{passive:true});
-      track.addEventListener('touchmove',e=>{
-        if(startX===null) return;
-        const dx=e.touches[0].clientX-startX;
-        if(Math.abs(dx)>50){ go(index+(dx<0?1:-1)); startX=null; }
-      },{passive:true});
+  const start = ()=>{ if(!prefersReduced && !timer) timer = setInterval(()=>go(index+1), autoMs); };
+  const stop  = ()=>{ if(timer) { clearInterval(timer); timer=null; } };
 
-      // Auto-play (opcional, 5s)
-      let timer=setInterval(()=>go(index+1), 5000);
-      document.querySelector('.carousel').addEventListener('mouseenter',()=>clearInterval(timer));
-      document.querySelector('.carousel').addEventListener('mouseleave',()=>{ timer=setInterval(()=>go(index+1),5000); });
+  prev && prev.addEventListener('click',()=>go(index-1));
+  next && next.addEventListener('click',()=>go(index+1));
 
-      go(0);
-    })();
-  </script>
+  // Teclado
+  document.addEventListener('keydown',(e)=>{
+    if(e.key==='ArrowLeft') go(index-1);
+    if(e.key==='ArrowRight') go(index+1);
+  });
+
+  // Swipe
+  let startX=null;
+  track.addEventListener('touchstart',e=>{ startX=e.touches[0].clientX; },{passive:true});
+  track.addEventListener('touchmove',e=>{
+    if(startX===null) return;
+    const dx=e.touches[0].clientX-startX;
+    if(Math.abs(dx)>50){ go(index+(dx<0?1:-1)); startX=null; }
+  },{passive:true});
+
+  // Pausas inteligentes (viewport + visibilidad + hover)
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(en=>{ en.isIntersecting ? start() : stop(); });
+    },{threshold:0.5});
+    io.observe(carousel);
+  } else {
+    start();
+  }
+
+  document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', ()=>!document.hidden && start());
+
+  go(0); start();
+})();</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
