@@ -32,7 +32,12 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
+        
+      - name: Remove CNAME for previews
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          rm -f CNAME
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
