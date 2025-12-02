@@ -111,6 +111,61 @@
       object-fit: cover;
       max-height: 260px; 
     }
+
+    .blog-content{
+      max-height: 360px;              /* controla cuánta altura se ve colapsado */
+      overflow: hidden;
+      position: relative;
+      transition: max-height .3s ease;
+    }
+    
+    /* Degradado al final para indicar que hay más texto */
+    .blog-content::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:80px;
+      background:linear-gradient(to bottom, rgba(15,15,15,0), rgba(15,15,15,0.96));
+      pointer-events:none;
+      opacity:1;
+      transition:opacity .2s;
+    }
+    
+    /* Cuando el artículo está expandido */
+    .blog-article.expanded .blog-content{
+      max-height: 5000px;             /* suficiente para mostrar todo */
+    }
+    
+    .blog-article.expanded .blog-content::after{
+      opacity:0;
+    }
+    
+    /* Botón Leer más / Leer menos */
+    .btn-read{
+      margin-top: 14px;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255,255,255,.3);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .btn-read:hover{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+    }
+    
+    .blog-article.expanded .btn-read{
+      color: var(--text);
+    }
+
   </style>
 </head>
 <body>
@@ -165,172 +220,180 @@
 
         <!-- Artículo 1 -->
         <article class="card blog-article" id="mejores-parrillas-playa">
-          <figure class="blog-cover">
-            <img src="/assets/galeria-1.jpg" alt="Parrilla portátil Fuego Rústico en la playa">
-          </figure>
-
           <h2>Las mejores parrillas portátiles para playa en Argentina [2025]</h2>
           <p class="meta">Guía comparativa · Lectura: 5 minutos</p>
-
-          <p>
-            Buscar una parrilla portátil que rinda en la playa es más difícil de lo que parece.
-            La mayoría se oxida rápido, pesa demasiado o directamente no está pensada para viento,
-            arena y movimiento constante. En esta guía comparo opciones reales que se consiguen
-            en Argentina y explico cuál sirve para qué.
-          </p>
-
-          <h3>Qué debe tener una buena parrilla para playa</h3>
-          <p>Una parrilla para playa necesita tres cosas esenciales:</p>
-
-          <ol>
-            <li>
-              <strong>Acero inoxidable real.</strong>
-              El mar y la humedad salina arruinan cualquier chapa pintada. El inoxidable evita
-              corrosión y no desprende pintura.
-            </li>
-            <li>
-              <strong>Liviana y fácil de armar.</strong>
-              En la playa todo es traslado. Si pesa demasiado o es un quilombo armarla, se queda en casa.
-            </li>
-            <li>
-              <strong>Estabilidad en arena.</strong>
-              No todas las patas funcionan bien sobre superficies inestables. Si se mueve, cocinar
-              se vuelve un desastre.
-            </li>
-          </ol>
-
-          <h3>Comparativa de modelos que se consiguen en Argentina</h3>
-          <p>
-            A continuación, un análisis honesto basado en materiales, peso y uso real en playa.
-          </p>
-
-          <h4>Opción 1: parrilla tradicional plegable de hierro</h4>
-          <ul>
-            <li>Precio bajo</li>
-            <li>Pesa demasiado</li>
-            <li>Se oxida en pocas salidas</li>
-            <li>No es ideal para playa</li>
-          </ul>
-          <p>
-            Es una opción económica, pero no está pensada para el ambiente salino ni para
-            moverla todas las semanas.
-          </p>
-
-          <h4>Opción 2: parrilla de acero pintado</h4>
-          <ul>
-            <li>Más liviana que la de hierro</li>
-            <li>Se calienta desparejo</li>
-            <li>Requiere mantenimiento y repintado</li>
-          </ul>
-          <p>
-            Funciona mejor para camping ocasional, pero en playa no suele durar más de una
-            temporada sin oxidarse o marcarse.
-          </p>
-
-          <h4>Opción recomendada: Fuego Rústico – parrilla portátil 100% acero inoxidable</h4>
-          <ul>
-            <li>Acero inoxidable real</li>
-            <li>Liviana y fácil de transportar</li>
-            <li>Resistente a sal, arena y humedad</li>
-            <li>Armado y desarmado en segundos</li>
-            <li>Estable en arena y superficies irregulares</li>
-            <li>No se oxida ni se pela</li>
-            <li>Ideal para playa, río o montaña</li>
-          </ul>
-          <p>
-            El diferencial está en la combinación entre portabilidad, durabilidad y estabilidad.
-            Es una parrilla pensada para moverse: playa, río, camping, patio. No está diseñada
-            para quedarse fija en un solo lugar, sino para acompañarte.
-          </p>
-
-          <h3>Conclusión</h3>
-          <p>
-            Si tu idea es usar una parrilla en la playa, buscá inoxidable y priorizá estabilidad y peso.
-            Para esos tres criterios, una parrilla portátil de acero inoxidable como
-            <strong>Fuego Rústico</strong> es de las pocas opciones que soporta arena, sal y traslado
-            constante sin perder forma ni oxidarse.
-          </p>
+          
+          <div class="blog-content">
+            <figure class="blog-cover">
+              <img src="/assets/galeria-1.jpg" alt="Parrilla portátil Fuego Rústico en la playa">
+            </figure>
+  
+            <p>
+              Buscar una parrilla portátil que rinda en la playa es más difícil de lo que parece.
+              La mayoría se oxida rápido, pesa demasiado o directamente no está pensada para viento,
+              arena y movimiento constante. En esta guía comparo opciones reales que se consiguen
+              en Argentina y explico cuál sirve para qué.
+            </p>
+  
+            <h3>Qué debe tener una buena parrilla para playa</h3>
+            <p>Una parrilla para playa necesita tres cosas esenciales:</p>
+  
+            <ol>
+              <li>
+                <strong>Acero inoxidable real.</strong>
+                El mar y la humedad salina arruinan cualquier chapa pintada. El inoxidable evita
+                corrosión y no desprende pintura.
+              </li>
+              <li>
+                <strong>Liviana y fácil de armar.</strong>
+                En la playa todo es traslado. Si pesa demasiado o es un quilombo armarla, se queda en casa.
+              </li>
+              <li>
+                <strong>Estabilidad en arena.</strong>
+                No todas las patas funcionan bien sobre superficies inestables. Si se mueve, cocinar
+                se vuelve un desastre.
+              </li>
+            </ol>
+  
+            <h3>Comparativa de modelos que se consiguen en Argentina</h3>
+            <p>
+              A continuación, un análisis honesto basado en materiales, peso y uso real en playa.
+            </p>
+  
+            <h4>Opción 1: parrilla tradicional plegable de hierro</h4>
+            <ul>
+              <li>Precio bajo</li>
+              <li>Pesa demasiado</li>
+              <li>Se oxida en pocas salidas</li>
+              <li>No es ideal para playa</li>
+            </ul>
+            <p>
+              Es una opción económica, pero no está pensada para el ambiente salino ni para
+              moverla todas las semanas.
+            </p>
+  
+            <h4>Opción 2: parrilla de acero pintado</h4>
+            <ul>
+              <li>Más liviana que la de hierro</li>
+              <li>Se calienta desparejo</li>
+              <li>Requiere mantenimiento y repintado</li>
+            </ul>
+            <p>
+              Funciona mejor para camping ocasional, pero en playa no suele durar más de una
+              temporada sin oxidarse o marcarse.
+            </p>
+  
+            <h4>Opción recomendada: Fuego Rústico – parrilla portátil 100% acero inoxidable</h4>
+            <ul>
+              <li>Acero inoxidable real</li>
+              <li>Liviana y fácil de transportar</li>
+              <li>Resistente a sal, arena y humedad</li>
+              <li>Armado y desarmado en segundos</li>
+              <li>Estable en arena y superficies irregulares</li>
+              <li>No se oxida ni se pela</li>
+              <li>Ideal para playa, río o montaña</li>
+            </ul>
+            <p>
+              El diferencial está en la combinación entre portabilidad, durabilidad y estabilidad.
+              Es una parrilla pensada para moverse: playa, río, camping, patio. No está diseñada
+              para quedarse fija en un solo lugar, sino para acompañarte.
+            </p>
+  
+            <h3>Conclusión</h3>
+            <p>
+              Si tu idea es usar una parrilla en la playa, buscá inoxidable y priorizá estabilidad y peso.
+              Para esos tres criterios, una parrilla portátil de acero inoxidable como
+              <strong>Fuego Rústico</strong> es de las pocas opciones que soporta arena, sal y traslado
+              constante sin perder forma ni oxidarse.
+            </p>
+           </div>
+          <button class="btn-read" type="button">Leer más</button>
         </article>
 
         <!-- Artículo 2 -->
         <article class="card blog-article" id="elegir-parrilla-inox">
-          <figure class="blog-cover">
-            <img src="/assets/galeria-4.jpg" alt="Detalle de parrilla portátil de acero inoxidable Fuego Rústico">
-          </figure>
-
           <h2>Cómo elegir una parrilla de acero inoxidable que realmente dure años</h2>
           <p class="meta">Guía práctica · Lectura: 4 minutos</p>
 
-          <p>
-            Muchas marcas dicen “acero inoxidable”, pero no todas usan materiales de calidad ni soldaduras
-            que soporten el calor y los golpes del uso real. Elegir bien evita gastar dos veces y asegura
-            una parrilla para muchos años.
-          </p>
+          <div class="blog-content">
+            <figure class="blog-cover">
+              <img src="/assets/galeria-4.jpg" alt="Detalle de parrilla portátil de acero inoxidable Fuego Rústico">
+            </figure>
+            
+            <p>
+              Muchas marcas dicen “acero inoxidable”, pero no todas usan materiales de calidad ni soldaduras
+              que soporten el calor y los golpes del uso real. Elegir bien evita gastar dos veces y asegura
+              una parrilla para muchos años.
+            </p>
+  
+            <h3>Por qué el acero inoxidable es la mejor opción</h3>
+            <p>El inoxidable aporta ventajas claras frente a otros materiales:</p>
+            <ul>
+              <li>No se oxida con humedad, lluvia o cercanía al mar</li>
+              <li>No desprende pintura ni químicos cuando calentás la parrilla</li>
+              <li>Es fácil de limpiar luego de cada uso</li>
+              <li>Resiste golpes, traslado y cambios de temperatura</li>
+            </ul>
+            <p>
+              Una buena parrilla portátil de inoxidable mantiene su forma incluso si la transportás
+              todas las semanas y la usás en diferentes lugares.
+            </p>
+  
+            <h3>Qué mirar antes de comprar</h3>
+  
+            <h4>1. Tipo de acero inoxidable</h4>
+            <p>
+              Lo ideal es que el fabricante especifique el tipo de acero (por ejemplo, AISI 304 o superior).
+              Cuando no se aclara nada y solo se escribe “inoxidable” en grande, es una señal de alerta.
+            </p>
+  
+            <h4>2. Espesor del material</h4>
+            <p>
+              Si el material es demasiado fino, se deforma con el calor o con un golpe.
+              Si es demasiado grueso, la parrilla se vuelve pesada y deja de ser portátil.
+              El equilibrio es lo que hace la diferencia.
+            </p>
+  
+            <h4>3. Soldaduras</h4>
+            <p>
+              Las uniones deben ser limpias y continuas. Una mala soldadura se abre con el uso
+              y el calor. Mirar las soldaduras es una forma sencilla de entender la calidad de
+              construcción de la parrilla.
+            </p>
+  
+            <h4>4. Estabilidad y diseño de las patas</h4>
+            <p>
+              Si vas a usar la parrilla en camping, playa o río, la estabilidad es clave.
+              Las patas tienen que apoyar bien en arena o tierra y soportar el peso de la
+              parrilla cargada.
+            </p>
+  
+            <h4>5. Peso total</h4>
+            <p>
+              Una parrilla “portátil” no puede pesar como una parrilla de obra.
+              Si te cuesta cargarla desde el auto hasta la playa, terminás dejándola en casa.
+              El peso razonable es una parte central del diseño.
+            </p>
+  
+            <h3>Qué diferencia a una parrilla inoxidable de calidad</h3>
+            <p>
+              Una parrilla como <strong>Fuego Rústico</strong> está pensada desde cero para
+              transportar, usar y volver a guardar sin que pierda forma. El material es
+              inoxidable real, el diseño está optimizado para la estabilidad y el armado
+              es intuitivo, sin herramientas ni piezas raras.
+            </p>
+  
+            <h3>Conclusión</h3>
+            <p>
+              Elegir una parrilla de acero inoxidable no es solo mirar el brillo del material.
+              Es verificar la calidad del acero, el espesor, las soldaduras, la estabilidad y
+              el peso. Si buscás un producto para playa, río o camping, una parrilla portátil
+              inoxidable bien construida te va a acompañar durante años sin sorpresas.
+            </p>
+          </div>
 
-          <h3>Por qué el acero inoxidable es la mejor opción</h3>
-          <p>El inoxidable aporta ventajas claras frente a otros materiales:</p>
-          <ul>
-            <li>No se oxida con humedad, lluvia o cercanía al mar</li>
-            <li>No desprende pintura ni químicos cuando calentás la parrilla</li>
-            <li>Es fácil de limpiar luego de cada uso</li>
-            <li>Resiste golpes, traslado y cambios de temperatura</li>
-          </ul>
-          <p>
-            Una buena parrilla portátil de inoxidable mantiene su forma incluso si la transportás
-            todas las semanas y la usás en diferentes lugares.
-          </p>
-
-          <h3>Qué mirar antes de comprar</h3>
-
-          <h4>1. Tipo de acero inoxidable</h4>
-          <p>
-            Lo ideal es que el fabricante especifique el tipo de acero (por ejemplo, AISI 304 o superior).
-            Cuando no se aclara nada y solo se escribe “inoxidable” en grande, es una señal de alerta.
-          </p>
-
-          <h4>2. Espesor del material</h4>
-          <p>
-            Si el material es demasiado fino, se deforma con el calor o con un golpe.
-            Si es demasiado grueso, la parrilla se vuelve pesada y deja de ser portátil.
-            El equilibrio es lo que hace la diferencia.
-          </p>
-
-          <h4>3. Soldaduras</h4>
-          <p>
-            Las uniones deben ser limpias y continuas. Una mala soldadura se abre con el uso
-            y el calor. Mirar las soldaduras es una forma sencilla de entender la calidad de
-            construcción de la parrilla.
-          </p>
-
-          <h4>4. Estabilidad y diseño de las patas</h4>
-          <p>
-            Si vas a usar la parrilla en camping, playa o río, la estabilidad es clave.
-            Las patas tienen que apoyar bien en arena o tierra y soportar el peso de la
-            parrilla cargada.
-          </p>
-
-          <h4>5. Peso total</h4>
-          <p>
-            Una parrilla “portátil” no puede pesar como una parrilla de obra.
-            Si te cuesta cargarla desde el auto hasta la playa, terminás dejándola en casa.
-            El peso razonable es una parte central del diseño.
-          </p>
-
-          <h3>Qué diferencia a una parrilla inoxidable de calidad</h3>
-          <p>
-            Una parrilla como <strong>Fuego Rústico</strong> está pensada desde cero para
-            transportar, usar y volver a guardar sin que pierda forma. El material es
-            inoxidable real, el diseño está optimizado para la estabilidad y el armado
-            es intuitivo, sin herramientas ni piezas raras.
-          </p>
-
-          <h3>Conclusión</h3>
-          <p>
-            Elegir una parrilla de acero inoxidable no es solo mirar el brillo del material.
-            Es verificar la calidad del acero, el espesor, las soldaduras, la estabilidad y
-            el peso. Si buscás un producto para playa, río o camping, una parrilla portátil
-            inoxidable bien construida te va a acompañar durante años sin sorpresas.
-          </p>
+          <button class="btn-read" type="button">Leer más</button>
+            
         </article>
 
       </div>
@@ -381,6 +444,15 @@
         const isOpen = nav.classList.toggle('show');
         toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
+
+    // Leer más / Leer menos
+    document.querySelectorAll('.btn-read').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const article = btn.closest('.blog-article');
+      const expanded = article.classList.toggle('expanded');
+      btn.textContent = expanded ? 'Leer menos' : 'Leer más';
+    });
+  });
     }
   </script>
 </body>
