@@ -1,126 +1,319 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guías y Tips | Fuego Rústico</title>
-  <link rel="stylesheet" href="assets/blog.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <title>Guías & Tips — Fuego Rústico</title>
+  <meta name="description" content="Guías y consejos reales para usar tu parrilla portátil Fuego Rústico en playa, río o camping. Cómo elegir parrilla inoxidable y comparativas para Argentina." />
+  <link rel="canonical" href="https://fuegorustico.com/blog.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Fuego Rústico">
+  <meta property="og:title" content="Guías & Tips — Fuego Rústico">
+  <meta property="og:description" content="Consejos para cocinar al aire libre y elegir tu parrilla portátil de acero inoxidable.">
+  <meta property="og:url" content="https://fuegorustico.com/blog.html">
+  <meta property="og:image" content="https://fuegorustico.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_AR">
+
+  <!-- Twitter/X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guías & Tips — Fuego Rústico">
+  <meta name="twitter:description" content="Guías y consejos para sacar el máximo a tu parrilla portátil.">
+  <meta name="twitter:image" content="https://fuegorustico.com/assets/og-image.png">
+
+  <meta name="theme-color" content="#ff3c00">
+
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/favicon.png">
+
+  <!-- Usamos los mismos estilos que en index -->
+  <style>
+    :root{
+      --bg:#0f0f0f; --bg-2:#151515; --text:#e9e9e9; --muted:#b9b9b9; --brand:#ff3c00; --brand-2:#ff6a3d;
+      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35)
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; color:var(--text); background:var(--bg); line-height:1.5}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{width:min(1100px,92%); margin-inline:auto}
+
+    header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(160%) blur(6px);
+      background:linear-gradient(180deg, rgba(15,15,15,.96), rgba(15,15,15,.9) 60%, rgba(15,15,15,0.96));
+      border-bottom:1px solid rgba(255,255,255,.05); box-shadow:0 6px 20px rgba(0,0,0,.25);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand img{width:34px; height:34px; border-radius:8px}
+    .brand .title{font-weight:700; letter-spacing:.4px}
+
+    nav{display:flex; align-items:center; gap:18px}
+    nav a{opacity:.85; font-size:0.95rem}
+    nav a:hover{opacity:1}
+    nav a.active{opacity:1; font-weight:600}
+
+    .btn{display:inline-flex; align-items:center; justify-content:center; padding:14px 20px; border-radius:999px; background:linear-gradient(180deg,var(--brand),var(--brand-2)); color:white; font-weight:700; box-shadow:var(--shadow); border:none; cursor:pointer; white-space:nowrap}
+    .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,.2)}
+    .btn.secondary{background:transparent; border:1px solid rgba(255,255,255,.2)}
+
+    .menu-toggle{display:none; background:none; border:none; color:var(--text); font-size:26px; cursor:pointer; line-height:1}
+
+    .section{padding:64px 0; background:var(--bg)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow)}
+
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.06); font-size:14px}
+
+    /* Layout blog */
+    .blog-hero{text-align:center}
+    .blog-hero h1{font-size:clamp(30px,4vw,40px); margin:12px 0}
+    .blog-hero p{color:var(--muted); max-width:640px; margin:0 auto 10px auto}
+    .blog-grid{display:grid; gap:24px; margin-top:32px}
+    .blog-article{padding:24px 22px}
+    .blog-article h2{margin-top:0; margin-bottom:6px; font-size:1.4rem}
+    .blog-article .meta{font-size:0.9rem; color:var(--muted); margin-bottom:14px}
+    .blog-article h3{margin-top:22px; margin-bottom:8px; font-size:1.1rem}
+    .blog-article h4{margin-top:16px; margin-bottom:6px; font-size:1rem}
+    .blog-article p,
+    .blog-article li{line-height:1.65; font-size:0.97rem}
+    .blog-article ol,
+    .blog-article ul{padding-left:1.1rem; margin-top:0.3rem}
+    .blog-article li+li{margin-top:4px}
+
+    /* CTA sección final */
+    .blog-cta{text-align:center}
+    .blog-cta p{color:var(--muted); margin-top:8px; margin-bottom:20px}
+
+    /* Footer (igual que index) */
+    footer{padding:36px 0; border-top:1px solid rgba(255,255,255,.08); background:var(--bg-2); color:var(--muted)}
+    .social{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+
+    /* Mobile nav */
+    @media (max-width: 780px) {
+      nav{position:absolute; top:64px; right:0; background:rgba(0,0,0,0.95); flex-direction:column; align-items:flex-start; padding:20px; border-radius:0 0 0 14px; display:none}
+      nav.show{display:flex}
+      .menu-toggle{display:block}
+    }
+  </style>
 </head>
-
 <body>
-
-  <!-- HEADER (OPCIONAL: copiá tu header del index) -->
-  <header class="header">
-    <nav class="nav">
-      <a href="index.html" class="logo">Fuego Rústico</a>
-      <ul class="nav-links">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="blog.html" class="active">Guías & Tips</a></li>
-      </ul>
-    </nav>
+  <header>
+    <div class="container nav">
+      <!-- En el blog volvemos al index con el logo -->
+      <a class="brand" href="index.html#top">
+        <img src="/assets/logo.png" alt="Fuego Rústico logo" />
+        <span class="title">Fuego Rústico</span>
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+      <nav id="menu">
+        <a href="index.html#producto">Producto</a>
+        <a href="index.html#galeria">Galería</a>
+        <a href="index.html#contacto">Contacto</a>
+        <a href="blog.html" class="active">Guías & Tips</a>
+        <a class="btn" href="index.html#contacto">Comprar</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="blog-container">
-
-    <section class="blog-hero">
-      <h1>Guías para cocinar al aire libre</h1>
-      <p>Consejos reales, comparativas y tips para quienes usan la parrilla en playa, río o camping.</p>
+  <main id="top">
+    <!-- HERO DEL BLOG -->
+    <section class="section">
+      <div class="container blog-hero">
+        <p class="chip">Guías & tips · Parrillas portátiles</p>
+        <h1>Guías para cocinar al aire libre</h1>
+        <p>
+          Contenido pensado para quienes usan la parrilla en la playa, el río o el camping.
+          Además de vender la parrilla, te ayudamos a elegir mejor y a sacarle más provecho.
+        </p>
+      </div>
     </section>
 
-    <!-- Artículo 1 -->
-    <article class="blog-article" id="mejores-parrillas-playa">
-      <h2>Las mejores parrillas portátiles para playa en Argentina [2025]</h2>
-      <p class="meta">Guía comparativa · Lectura: 5 minutos</p>
+    <!-- ARTÍCULOS EN CARDS -->
+    <section class="section" style="padding-top:0;">
+      <div class="container blog-grid">
 
-      <p>
-        Buscar una parrilla portátil que rinda en la playa es más difícil de lo que parece.
-        La mayoría se oxida rápido, pesa demasiado o directamente no está pensada para viento,
-        arena y movimiento constante. En esta guía comparo las opciones reales que se consiguen
-        en Argentina y explico cuál sirve para qué.
-      </p>
+        <!-- Artículo 1 -->
+        <article class="card blog-article" id="mejores-parrillas-playa">
+          <h2>Las mejores parrillas portátiles para playa en Argentina [2025]</h2>
+          <p class="meta">Guía comparativa · Lectura: 5 minutos</p>
 
-      <h3>Qué debe tener una buena parrilla para playa</h3>
-      <ol>
-        <li><strong>Acero inoxidable real.</strong> El mar y la humedad salina arruinan cualquier chapa pintada.</li>
-        <li><strong>Liviana y fácil de armar.</strong> En la playa todo es traslado.</li>
-        <li><strong>Estable en arena.</strong> Las patas deben mantenerla firme.</li>
-      </ol>
+          <p>
+            Buscar una parrilla portátil que rinda en la playa es más difícil de lo que parece.
+            La mayoría se oxida rápido, pesa demasiado o directamente no está pensada para viento,
+            arena y movimiento constante. En esta guía comparo opciones reales que se consiguen
+            en Argentina y explico cuál sirve para qué.
+          </p>
 
-      <h3>Comparativa de modelos</h3>
+          <h3>Qué debe tener una buena parrilla para playa</h3>
+          <p>Una parrilla para playa necesita tres cosas esenciales:</p>
 
-      <h4>Opción 1: Parrilla tradicional plegable de hierro</h4>
-      <ul>
-        <li>Precio bajo</li>
-        <li>Pesa demasiado</li>
-        <li>Se oxida en pocas salidas</li>
-      </ul>
+          <ol>
+            <li>
+              <strong>Acero inoxidable real.</strong>
+              El mar y la humedad salina arruinan cualquier chapa pintada. El inoxidable evita
+              corrosión y no desprende pintura.
+            </li>
+            <li>
+              <strong>Liviana y fácil de armar.</strong>
+              En la playa todo es traslado. Si pesa demasiado o es un quilombo armarla, se queda en casa.
+            </li>
+            <li>
+              <strong>Estabilidad en arena.</strong>
+              No todas las patas funcionan bien sobre superficies inestables. Si se mueve, cocinar
+              se vuelve un desastre.
+            </li>
+          </ol>
 
-      <h4>Opción 2: Parrilla de acero pintado</h4>
-      <ul>
-        <li>Más liviana</li>
-        <li>Se calienta desparejo</li>
-        <li>Requiere mantenimiento</li>
-      </ul>
+          <h3>Comparativa de modelos que se consiguen en Argentina</h3>
+          <p>
+            A continuación, un análisis honesto basado en materiales, peso y uso real en playa.
+          </p>
 
-      <h4>Opción recomendada: Fuego Rústico – parrilla portátil 100% acero inoxidable</h4>
-      <ul>
-        <li>Acero inoxidable real</li>
-        <li>Liviana y resistente</li>
-        <li>Estable en arena</li>
-        <li>Ideal para playa, río o montaña</li>
-      </ul>
+          <h4>Opción 1: parrilla tradicional plegable de hierro</h4>
+          <ul>
+            <li>Precio bajo</li>
+            <li>Pesa demasiado</li>
+            <li>Se oxida en pocas salidas</li>
+            <li>No es ideal para playa</li>
+          </ul>
+          <p>
+            Es una opción económica, pero no está pensada para el ambiente salino ni para
+            moverla todas las semanas.
+          </p>
 
-      <p>
-        Si querés usar la parrilla en playa, buscá inoxidable, liviana y estable. Fuego Rústico es hoy una
-        de las pocas opciones que realmente soporta arena, sal y traslado constante sin oxidarse ni deformarse.
-      </p>
-    </article>
+          <h4>Opción 2: parrilla de acero pintado</h4>
+          <ul>
+            <li>Más liviana que la de hierro</li>
+            <li>Se calienta desparejo</li>
+            <li>Requiere mantenimiento y repintado</li>
+          </ul>
+          <p>
+            Funciona mejor para camping ocasional, pero en playa no suele durar más de una
+            temporada sin oxidarse o marcarse.
+          </p>
 
-    <!-- Artículo 2 -->
-    <article class="blog-article" id="elegir-parrilla-inox">
-      <h2>Cómo elegir una parrilla de acero inoxidable que realmente dure años</h2>
-      <p class="meta">Guía práctica · Lectura: 4 minutos</p>
+          <h4>Opción recomendada: Fuego Rústico – parrilla portátil 100% acero inoxidable</h4>
+          <ul>
+            <li>Acero inoxidable real</li>
+            <li>Liviana y fácil de transportar</li>
+            <li>Resistente a sal, arena y humedad</li>
+            <li>Armado y desarmado en segundos</li>
+            <li>Estable en arena y superficies irregulares</li>
+            <li>No se oxida ni se pela</li>
+            <li>Ideal para playa, río o montaña</li>
+          </ul>
+          <p>
+            El diferencial está en la combinación entre portabilidad, durabilidad y estabilidad.
+            Es una parrilla pensada para moverse: playa, río, camping, patio. No está diseñada
+            para quedarse fija en un solo lugar, sino para acompañarte.
+          </p>
 
-      <p>
-        Muchas marcas dicen “acero inoxidable”, pero no todas usan materiales de calidad ni soldaduras
-        que soporten el calor y los golpes. Elegir bien evita gastar dos veces y asegura una parrilla
-        para muchos años.
-      </p>
+          <h3>Conclusión</h3>
+          <p>
+            Si tu idea es usar una parrilla en la playa, buscá inoxidable y priorizá estabilidad y peso.
+            Para esos tres criterios, una parrilla portátil de acero inoxidable como
+            <strong>Fuego Rústico</strong> es de las pocas opciones que soporta arena, sal y traslado
+            constante sin perder forma ni oxidarse.
+          </p>
+        </article>
 
-      <h3>Por qué el acero inoxidable es la mejor opción</h3>
-      <ul>
-        <li>No se oxida</li>
-        <li>No desprende pintura ni químicos</li>
-        <li>Fácil de limpiar</li>
-        <li>Resistente a golpes y cambios de temperatura</li>
-      </ul>
+        <!-- Artículo 2 -->
+        <article class="card blog-article" id="elegir-parrilla-inox">
+          <h2>Cómo elegir una parrilla de acero inoxidable que realmente dure años</h2>
+          <p class="meta">Guía práctica · Lectura: 4 minutos</p>
 
-      <h3>Qué mirar antes de comprar</h3>
+          <p>
+            Muchas marcas dicen “acero inoxidable”, pero no todas usan materiales de calidad ni soldaduras
+            que soporten el calor y los golpes del uso real. Elegir bien evita gastar dos veces y asegura
+            una parrilla para muchos años.
+          </p>
 
-      <h4>1. Tipo de acero</h4>
-      <p>Preferible AISI 304 o superior. Evitar “inoxidable” genérico sin detallar.</p>
+          <h3>Por qué el acero inoxidable es la mejor opción</h3>
+          <p>El inoxidable aporta ventajas claras frente a otros materiales:</p>
+          <ul>
+            <li>No se oxida con humedad, lluvia o cercanía al mar</li>
+            <li>No desprende pintura ni químicos cuando calentás la parrilla</li>
+            <li>Es fácil de limpiar luego de cada uso</li>
+            <li>Resiste golpes, traslado y cambios de temperatura</li>
+          </ul>
+          <p>
+            Una buena parrilla portátil de inoxidable mantiene su forma incluso si la transportás
+            todas las semanas y la usás en diferentes lugares.
+          </p>
 
-      <h4>2. Espesor</h4>
-      <p>Muy fino se deforma, muy grueso pesa demasiado. El equilibrio es clave.</p>
+          <h3>Qué mirar antes de comprar</h3>
 
-      <h4>3. Soldaduras</h4>
-      <p>Una buena soldadura es limpia y continua, no por puntos.</p>
+          <h4>1. Tipo de acero inoxidable</h4>
+          <p>
+            Lo ideal es que el fabricante especifique el tipo de acero (por ejemplo, AISI 304 o superior).
+            Cuando no se aclara nada y solo se escribe “inoxidable” en grande, es una señal de alerta.
+          </p>
 
-      <h4>4. Estabilidad</h4>
-      <p>Las patas deben funcionar bien en tierra, arena o ripio.</p>
+          <h4>2. Espesor del material</h4>
+          <p>
+            Si el material es demasiado fino, se deforma con el calor o con un golpe.
+            Si es demasiado grueso, la parrilla se vuelve pesada y deja de ser portátil.
+            El equilibrio es lo que hace la diferencia.
+          </p>
 
-      <h4>5. Peso total</h4>
-      <p>Una parrilla “portátil” no puede pesar 12 kg. Tiene que acompañarte.</p>
+          <h4>3. Soldaduras</h4>
+          <p>
+            Las uniones deben ser limpias y continuas. Una mala soldadura se abre con el uso
+            y el calor. Mirar las soldaduras es una forma sencilla de entender la calidad de
+            construcción de la parrilla.
+          </p>
 
-      <h3>Diferenciales de una parrilla de calidad</h3>
+          <h4>4. Estabilidad y diseño de las patas</h4>
+          <p>
+            Si vas a usar la parrilla en camping, playa o río, la estabilidad es clave.
+            Las patas tienen que apoyar bien en arena o tierra y soportar el peso de la
+            parrilla cargada.
+          </p>
 
-      <p>
-        Una parrilla como Fuego Rústico está diseñada para moverla seguido, guardarla y volver a usarla
-        sin que pierda forma. Material real, diseño estable y armado fácil.
-      </p>
+          <h4>5. Peso total</h4>
+          <p>
+            Una parrilla “portátil” no puede pesar como una parrilla de obra.
+            Si te cuesta cargarla desde el auto hasta la playa, terminás dejándola en casa.
+            El peso razonable es una parte central del diseño.
+          </p>
 
-    </article>
+          <h3>Qué diferencia a una parrilla inoxidable de calidad</h3>
+          <p>
+            Una parrilla como <strong>Fuego Rústico</strong> está pensada desde cero para
+            transportar, usar y volver a guardar sin que pierda forma. El material es
+            inoxidable real, el diseño está optimizado para la estabilidad y el armado
+            es intuitivo, sin herramientas ni piezas raras.
+          </p>
 
+          <h3>Conclusión</h3>
+          <p>
+            Elegir una parrilla de acero inoxidable no es solo mirar el brillo del material.
+            Es verificar la calidad del acero, el espesor, las soldaduras, la estabilidad y
+            el peso. Si buscás un producto para playa, río o camping, una parrilla portátil
+            inoxidable bien construida te va a acompañar durante años sin sorpresas.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CTA FINAL (alineada a la marca) -->
+    <section class="section" style="padding-top:0; background:radial-gradient(70% 60% at 50% 40%, rgba(255,60,0,.12), rgba(0,0,0,0))">
+      <div class="container blog-cta">
+        <h2 style="margin:0 0 6px">¿Querés ver la parrilla en acción?</h2>
+        <p>Volvé al producto o escribinos directo y te contamos cómo se adapta a tus salidas.</p>
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:6px;">
+          <a class="btn" href="index.html#producto">Ver producto</a>
+          <a class="btn ghost" href="https://wa.me/5491164812711?text=Hola%20Fuego%20R%C3%BAstico%2C%20vengo%20desde%20el%20blog%20y%20quiero%20info" target="_blank" rel="noopener">
+            📲 Escribirme por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -144,5 +337,16 @@
     </div>
   </footer>
 
+  <script>
+    // Toggle menú mobile (mismo comportamiento que el index)
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('menu');
+    if (toggle && nav) {
+      toggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('show');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+  </script>
 </body>
 </html>
